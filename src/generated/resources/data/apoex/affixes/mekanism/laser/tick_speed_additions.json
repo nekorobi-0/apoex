@@ -1,0 +1,30 @@
+{
+  "type": "apoex:mekanism_stat",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "apotheotic_additions"
+    }
+  ],
+  "desc": "affix.apoex.mekanism.laser.tick_speed",
+  "types": [
+    "apoex:laser"
+  ],
+  "values": {
+    "apotheotic_additions:artifact": {
+      "min": 3.0,
+      "step": 1.0,
+      "steps": 2
+    },
+    "apotheotic_additions:esoteric": {
+      "min": 10.0,
+      "step": 1.0,
+      "steps": 4
+    },
+    "apotheotic_additions:heirloom": {
+      "min": 5.0,
+      "step": 1.0,
+      "steps": 2
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "apoex:mekanism_stat",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "apotheotic_additions"
+    }
+  ],
+  "desc": "affix.apoex.mekanism.multiblock.evaporation_plant.energy_capacity",
+  "types": [
+    "apoex:evaporation_plant"
+  ],
+  "values": {
+    "apotheotic_additions:artifact": {
+      "min": 3.0,
+      "step": 0.04,
+      "steps": 30
+    },
+    "apotheotic_additions:esoteric": {
+      "min": 7.2,
+      "step": 0.1,
+      "steps": 70
+    },
+    "apotheotic_additions:heirloom": {
+      "min": 4.0,
+      "step": 0.06,
+      "steps": 50
+    }
+  }
+}

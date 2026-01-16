@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [{
+	"type": "apotheosis:module",
+    "module": "adventure"
+  }],
+  "group": "something",
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "key": {
+    "A": {
+      "item": "apotheosis:sigil_of_socketing"
+    },
+	"B": {
+      "item": "apotheosis:ancient_material"
+    },
+    "C": {
+      "item": "apotheosis:gem_dust"
+    }
+  },
+  "result": {
+    "item": "apoex:ex_socket_key",
+    "count": 1
+  }
+}

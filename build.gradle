@@ -18,10 +18,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 
-mixin {
-    add sourceSets.main, "apoex.refmap.json"
-    config "apoex.mixins.json"
-}
 
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
@@ -55,13 +51,30 @@ minecraft {
         }
 
         data {
-            workingDirectory project.file('run-data')
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', 'apoex', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+
+            mods {
+                apoex {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/generated/resources'
+        }
+    }
+}
 
 repositories {
     // CurseMaven for mod dependencies
@@ -74,6 +87,18 @@ repositories {
     }
 
     maven { url = "https://maven.createmod.net" }
+    maven {
+        name = "Progwml6's maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
 
 
     flatDir {
@@ -91,14 +116,32 @@ dependencies {
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
     implementation fg.deobf("curse.maven:apotheotic-additions-924640:6393313")
     implementation fg.deobf("curse.maven:apotheosis-modern-ragnarok-966582:7281314")
-    implementation fg.deobf("curse.maven:moffs-addonapi-dynload-1242459:6420515")
+    implementation fg.deobf("curse.maven:moffs-addonapi-dynload-1242459:7441442")
     implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:7278003")
     implementation fg.deobf("curse.maven:apothic-attributes-898963:5634071")
+    implementation fg.deobf("curse.maven:jei-238222:7391695")
+    implementation fg.deobf("curse.maven:applied-energistics-2-223794:7148487")
+    implementation fg.deobf("curse.maven:guideme-1173950:7127447")
+    implementation fg.deobf("curse.maven:iglee-library-541199:6987117")
+    
+    // Mekanism
+    implementation fg.deobf("mekanism:Mekanism:${mekanism_version}")
+    implementation fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
+    implementation fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
 
-    // Mekanism - 修正された依存関係設定
+    // Mekanism addon
+    implementation fg.deobf("curse.maven:mekanism-lasers-1060096:5870964")
+    implementation fg.deobf("curse.maven:applied-mekanistics-574300:7244744")
+    implementation fg.deobf("curse.maven:evolved-mekanism-1230085:7408013")
+    implementation fg.deobf("curse.maven:mekanism-extras-1026040:6936409")
+    implementation fg.deobf("curse.maven:evolved-mekanism-extras-1268159:6866367")
+    implementation fg.deobf("curse.maven:astral-mekanism-1415150:7455924")
+    
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
+    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
 
     // 開発環境用（実行時のみ）
-    implementation fg.deobf("curse.maven:mekanism-268560:6258796")// core
+    // implementation fg.deobf("curse.maven:mekanism-268560:6258796")// core
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -109,7 +152,7 @@ tasks.named('processResources', ProcessResources).configure {
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
             apo_version: apo_version, apo_additions_version: apo_additions_version, apo_modern_ragnarok_version: apo_modern_ragnarok_version,
-            mekanism_version: mekanism_version,
+            mekanism_version: mekanism_version, addonapi_version: addonapi_version, jei_version: jei_version
     ]
     inputs.properties replaceProperties
 

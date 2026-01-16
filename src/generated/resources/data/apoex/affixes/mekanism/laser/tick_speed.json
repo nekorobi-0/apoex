@@ -1,0 +1,19 @@
+{
+  "type": "apoex:mekanism_stat",
+  "desc": "affix.apoex.mekanism.laser.tick_speed",
+  "types": [
+    "apoex:laser"
+  ],
+  "values": {
+    "apotheosis:ancient": {
+      "min": 1.0,
+      "step": 1.0,
+      "steps": 2
+    },
+    "apotheosis:mythic": {
+      "min": 1.0,
+      "step": 1.0,
+      "steps": 1
+    }
+  }
+}

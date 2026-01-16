@@ -1,0 +1,39 @@
+{
+  "type": "apoex:mekanism_stat",
+  "desc": "affix.apoex.mekanism.energy_capacity",
+  "types": [
+    "apoex:mekanism_machine"
+  ],
+  "values": {
+    "apotheosis:ancient": {
+      "min": 1.1,
+      "step": 0.01,
+      "steps": 10
+    },
+    "apotheosis:common": {
+      "min": 0.1,
+      "step": 0.01,
+      "steps": 10
+    },
+    "apotheosis:epic": {
+      "min": 0.55,
+      "step": 0.02,
+      "steps": 10
+    },
+    "apotheosis:mythic": {
+      "min": 0.8,
+      "step": 0.01,
+      "steps": 10
+    },
+    "apotheosis:rare": {
+      "min": 0.35,
+      "step": 0.01,
+      "steps": 10
+    },
+    "apotheosis:uncommon": {
+      "min": 0.2,
+      "step": 0.01,
+      "steps": 10
+    }
+  }
+}

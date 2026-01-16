@@ -1,0 +1,17 @@
+{
+  "conditions": [{
+      "type": "forge:mod_loaded",
+      "modid": "allthemodium"
+    }],
+
+  "type": "apoex:ex_socket_adding",
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  },
+  "base": {
+    "tag": "minecraft:trimmable_armor"
+  },
+  "addition": {
+    "item": "apoex:ex_socket_key"
+  }
+}

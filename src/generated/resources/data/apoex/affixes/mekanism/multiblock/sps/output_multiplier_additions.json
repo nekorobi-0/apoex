@@ -1,0 +1,30 @@
+{
+  "type": "apoex:mekanism_stat",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "apotheotic_additions"
+    }
+  ],
+  "desc": "affix.apoex.mekanism.multiblock.sps.output_multiplier",
+  "types": [
+    "apoex:sps"
+  ],
+  "values": {
+    "apotheotic_additions:artifact": {
+      "min": 2.0,
+      "step": 1.0,
+      "steps": 1
+    },
+    "apotheotic_additions:esoteric": {
+      "min": 5.0,
+      "step": 1.0,
+      "steps": 5
+    },
+    "apotheotic_additions:heirloom": {
+      "min": 3.0,
+      "step": 1.0,
+      "steps": 2
+    }
+  }
+}

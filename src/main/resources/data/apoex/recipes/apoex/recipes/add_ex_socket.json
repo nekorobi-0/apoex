@@ -1,0 +1,12 @@
+{
+  "type": "apoex:ex_socket_adding",
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  },
+  "base": {
+    "tag": "forge:armors"
+  },
+  "addition": {
+    "item": "apoex:ex_socket_key"
+  }
+}

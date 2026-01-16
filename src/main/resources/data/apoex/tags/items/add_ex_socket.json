@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "avaritia:infinity_helmet",
+    "avaritia:infinity_chestplate",
+    "avaritia:infinity_pants",
+    "avaritia:infinity_boots",
+    "nosugar:snack_protect_helmet",
+    "nosugar:snack_protect_chestplate",
+    "nosugar:snack_protect_leggings",
+    "nosugar:snack_protect_boots"
+  ]
+}

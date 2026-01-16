@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.youtyan.apoex.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "apoex.refmap.json",
+  "mixins": [
+    "apotheosis.MixinAttributeAffix",
+    "apotheosis.MixinLootController",
+    "astral_mekanism.recipe.MixinGreenhouseCachedRecipe",
+    "evolvedmekanism.recipe.MixinThreeInputCachedRecipe",
+    "astral_mekanism.recipe.MixinItemToItemItemCachedRecipe",
+    "astral_mekanism.recipe.MixinAstralCraftingCachedRecipe",
+    "astral_mekanism.recipe.MixinEssentialSmeltingCachedRecipe",
+    "astral_mekanism.recipe.MixinMekanicalInscribeCachedRecipe"
+  ],
+  "client": [
+    "apotheosis.MixinSocketTooltipRenderer",
+    "apotheosis.MixinAugmentingScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "apoex:mekanism_stat",
+  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.damage_resistance",
+  "types": [
+    "apoex:fission_reactor"
+  ],
+  "values": {
+    "apotheosis:ancient": {
+      "min": 0.4,
+      "step": 0.01,
+      "steps": 5
+    },
+    "apotheosis:epic": {
+      "min": 0.2,
+      "step": 0.01,
+      "steps": 5
+    },
+    "apotheosis:mythic": {
+      "min": 0.3,
+      "step": 0.01,
+      "steps": 5
+    },
+    "apotheosis:rare": {
+      "min": 0.1,
+      "step": 0.01,
+      "steps": 5
+    }
+  }
+}

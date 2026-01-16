@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
+  "group": "something",
+  "pattern": [
+    "FBF",
+    "EAC",
+    "FDF"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:nether_star"
+    },
+	"B": {
+      "item": "mekanism:mekasuit_helmet"
+    },
+    "C": {
+      "item": "mekanism:mekasuit_bodyarmor"
+    },
+    "D": {
+      "item": "mekanism:mekasuit_pants"
+    },
+    "E": {
+      "item": "mekanism:mekasuit_boots"
+    },
+    "F": {
+      "item": "apotheosis:ancient_material"
+    }
+  },
+  "result": {
+    "item": "apoex:mek_suits_gem",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "apoex:mekanism_stat",
+  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.heat_efficiency",
+  "types": [
+    "apoex:fission_reactor"
+  ],
+  "values": {
+    "apotheosis:ancient": {
+      "min": 0.5,
+      "step": 0.01,
+      "steps": 20
+    },
+    "apotheosis:epic": {
+      "min": 0.2,
+      "step": 0.01,
+      "steps": 5
+    },
+    "apotheosis:mythic": {
+      "min": 0.4,
+      "step": 0.01,
+      "steps": 10
+    },
+    "apotheosis:rare": {
+      "min": 0.1,
+      "step": 0.01,
+      "steps": 5
+    }
+  }
+}
