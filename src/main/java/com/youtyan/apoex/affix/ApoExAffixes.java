@@ -14,6 +14,7 @@ public class ApoExAffixes {
     public static void setup(FMLCommonSetupEvent e) {
         e.enqueueWork(() -> {
             AffixRegistry.INSTANCE.registerCodec(new ResourceLocation(ApoEXMod.MODID, "mekanism_stat"), MekanismStatAffix.CODEC);
+            AffixRegistry.INSTANCE.registerCodec(new ResourceLocation(ApoEXMod.MODID, "true_damage"), TrueDamageAffix.CODEC);
         });
     }
 }

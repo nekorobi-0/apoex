@@ -275,11 +275,9 @@ public class AffixData implements DataProvider {
         futures.add(generateMultiblockAffix(cache, "sps", "energy_capacity", defaultMultiblockCapacity, false));
         futures.add(generateMultiblockAffix(cache, "sps", "generation_multiplier", defaultMultiblockGeneration, false));
         futures.add(generateMultiblockAffix(cache, "sps", "fuel_efficiency", defaultMultiblockFuelEfficiency, false));
-        futures.add(generateMultiblockAffix(cache, "sps", "heat_efficiency", defaultMultiblockHeatEfficiency, false));
         futures.add(generateMultiblockAffix(cache, "sps", "fuel_capacity", defaultMultiblockFuelCapacity, false));
         futures.add(generateMultiblockAffix(cache, "sps", "output_multiplier", defaultMultiblockoutput, false));
         // Evaporation Plant (Not Generator)
-        futures.add(generateMultiblockAffix(cache, "evaporation_plant", "energy_capacity", defaultMultiblockCapacity, false)); // エネルギーは使わないが...
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "generation_multiplier", defaultMultiblockGeneration, false));
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "fuel_efficiency", defaultMultiblockFuelEfficiency, false));
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "heat_efficiency", defaultMultiblockHeatEfficiency, false));

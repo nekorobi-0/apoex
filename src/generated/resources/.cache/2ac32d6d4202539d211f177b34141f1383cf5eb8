@@ -1,4 +1,4 @@
-// 1.20.1	2026-01-14T17:51:05.5212479	ApoEX Affixes
+// 1.20.1	2026-01-17T14:10:31.4662163	ApoEX Affixes
 b00e4738857cf24c76ef561266feea42e9f1047c data/apoex/affixes/mekanism/energy_capacity.json
 f43597e03cc62792d42eb15c3d87bfab44b5a1d9 data/apoex/affixes/mekanism/energy_capacity_additions.json
 40a5b17ceb9e1d185dd7c0b88fb2b14aaad8cfc5 data/apoex/affixes/mekanism/energy_efficiency.json
@@ -59,8 +59,6 @@ d1a6e5388c5e957efb3153108813b5138ed71ab9 data/apoex/affixes/mekanism/laser/heat_
 d8e93d7dd89c8589593f32a2db736b1d08784477 data/apoex/affixes/mekanism/laser/heat_multiplier_additions.json
 0680ce5f804139cf11fbaf13edd15f2fcf1e06d7 data/apoex/affixes/mekanism/laser/tick_speed.json
 4c0452cba2ec9d873cbb9feed69426eabb1c8f69 data/apoex/affixes/mekanism/laser/tick_speed_additions.json
-c49790974645bba1252c7f7fb79a4ba38a5b660c data/apoex/affixes/mekanism/multiblock/evaporation_plant/energy_capacity.json
-52820099c8be8dcb81a9e8074e8c8be22f778d87 data/apoex/affixes/mekanism/multiblock/evaporation_plant/energy_capacity_additions.json
 bd4b2427037430e5c80719eeb80faf850240d106 data/apoex/affixes/mekanism/multiblock/evaporation_plant/fuel_capacity.json
 c6e9e9c14878e9a46f04238b324b763bf2269341 data/apoex/affixes/mekanism/multiblock/evaporation_plant/fuel_capacity_additions.json
 ab68fc5482a1a4c7827b7941215171aebdf0ed95 data/apoex/affixes/mekanism/multiblock/evaporation_plant/fuel_efficiency.json
@@ -79,8 +77,6 @@ eb40300ac6cda6ee831ff3d7df1c96e45cb2df27 data/apoex/affixes/mekanism/multiblock/
 236ad61cdc91be14881c3b619e79a25686c269f7 data/apoex/affixes/mekanism/multiblock/sps/fuel_efficiency_additions.json
 e86ac150ddee910ed986b38f8867a75954f7742d data/apoex/affixes/mekanism/multiblock/sps/generation_multiplier.json
 7eeb3d6c19b385b96037e28c36b4a9ab7738ec3f data/apoex/affixes/mekanism/multiblock/sps/generation_multiplier_additions.json
-9688ced3ca4f888232c947ad6b957e8aa818641c data/apoex/affixes/mekanism/multiblock/sps/heat_efficiency.json
-a150b942e063fd31b8f6ba113a73ef3855f699db data/apoex/affixes/mekanism/multiblock/sps/heat_efficiency_additions.json
 9bde249192efe49c301fb6b58c7a5339790db7ea data/apoex/affixes/mekanism/multiblock/sps/output_multiplier.json
 b4026c51358808617feb5af16c2b67bb8e0055e4 data/apoex/affixes/mekanism/multiblock/sps/output_multiplier_additions.json
 b76ae66d322a5b55a0d361933e580fc0c3b937d4 data/apoex/affixes/mekanism/output_multiplier.json

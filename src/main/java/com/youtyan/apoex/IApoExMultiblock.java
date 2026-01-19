@@ -34,4 +34,9 @@ public interface IApoExMultiblock {
     void recalculate(Level world, Set<BlockPos> locations);
 
     default void updateHeatCapacity() {}
+    default void updateCapacity() {}
+
+    // 消費スキップ用のカウンター
+    default float getConsumptionAccumulator() { return 100F; }
+    default void setConsumptionAccumulator(float value) {}
 }

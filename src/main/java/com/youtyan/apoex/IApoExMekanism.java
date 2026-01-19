@@ -31,4 +31,7 @@ public interface IApoExMekanism {
     IEnergyContainer getEnergyContainer();
 
     void sendUpdatePacket();
+
+    // Added for capacity update
+    default void updateCapacity() {}
 }

@@ -136,6 +136,7 @@ dependencies {
     implementation fg.deobf("curse.maven:mekanism-extras-1026040:6936409")
     implementation fg.deobf("curse.maven:evolved-mekanism-extras-1268159:6866367")
     implementation fg.deobf("curse.maven:astral-mekanism-1415150:7455924")
+    implementation fg.deobf("curse.maven:compact-mekanism-machines-1161015:7388773")
     
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))

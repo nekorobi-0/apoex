@@ -1,6 +1,7 @@
 package com.youtyan.apoex.recipe;
 
 import com.youtyan.apoex.IApoExMekanism;
+import com.youtyan.apoex.IApoExMultiblock;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import org.jetbrains.annotations.NotNull;
@@ -8,28 +9,44 @@ import org.jetbrains.annotations.NotNull;
 public class ApoExOutputHandler<OUTPUT> implements IOutputHandler<OUTPUT> {
 
     private final IOutputHandler<OUTPUT> wrapped;
-    private final IApoExMekanism tile;
+    private IApoExMekanism tile;
+    private IApoExMultiblock multiblock;
 
     public ApoExOutputHandler(IOutputHandler<OUTPUT> wrapped, IApoExMekanism tile) {
         this.wrapped = wrapped;
         this.tile = tile;
     }
 
+    public ApoExOutputHandler(IOutputHandler<OUTPUT> wrapped, IApoExMultiblock multiblock) {
+        this.wrapped = wrapped;
+        this.multiblock = multiblock;
+    }
+
     @Override
     public void handleOutput(@NotNull OUTPUT output, int operations) {
-        float multiplier = tile.getOutputMultiplier();
+        float multiplier = 0;
+        float storedFraction = 0;
+
+        if (this.tile != null) {
+            multiplier = this.tile.getOutputMultiplier();
+            storedFraction = this.tile.getStoredOutputFraction();
+        } else if (this.multiblock != null) {
+            multiplier = this.multiblock.getGenerationMultiplier();
+            storedFraction = this.multiblock.getStoredFuelFraction(); // StoredFuelFractionを流用
+        }
+
         if (multiplier > 0) {
             float totalOps = operations * (1.0F + multiplier);
-            
-            // 以前の端数を加算
-            float storedFraction = tile.getStoredOutputFraction();
             totalOps += storedFraction;
             
             int baseOps = (int) totalOps;
             float newFraction = totalOps - baseOps;
             
-            // 新しい端数を保存
-            tile.setStoredOutputFraction(newFraction);
+            if (this.tile != null) {
+                this.tile.setStoredOutputFraction(newFraction);
+            } else if (this.multiblock != null) {
+                this.multiblock.setStoredFuelFraction(newFraction); // StoredFuelFractionを流用
+            }
             
             if (baseOps > 0) {
                 wrapped.handleOutput(output, baseOps);

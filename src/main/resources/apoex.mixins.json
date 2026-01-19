@@ -7,12 +7,20 @@
   "mixins": [
     "apotheosis.MixinAttributeAffix",
     "apotheosis.MixinLootController",
-    "astral_mekanism.recipe.MixinGreenhouseCachedRecipe",
+    "astralmekanism.recipe.MixinGreenhouseCachedRecipe",
     "evolvedmekanism.recipe.MixinThreeInputCachedRecipe",
-    "astral_mekanism.recipe.MixinItemToItemItemCachedRecipe",
-    "astral_mekanism.recipe.MixinAstralCraftingCachedRecipe",
-    "astral_mekanism.recipe.MixinEssentialSmeltingCachedRecipe",
-    "astral_mekanism.recipe.MixinMekanicalInscribeCachedRecipe"
+    "astralmekanism.recipe.MixinItemToItemItemCachedRecipe",
+    "astralmekanism.recipe.MixinAstralCraftingCachedRecipe",
+    "astralmekanism.recipe.MixinEssentialSmeltingCachedRecipe",
+    "astralmekanism.recipe.MixinMekanicalInscribeCachedRecipe",
+    "mekanismgenerators.MixinTileEntityGenerator",
+    "mekanismgenerators.generator.MixinTileEntityHeatGenerator",
+    "mekanismgenerators.generator.MixinTileEntityGasGenerator",
+    "mekanismgenerators.generator.MixinTileEntityBioGenerator",
+    "mekanismgenerators.generator.multiblock.MixinFusionReactorMultiblockData",
+    "mekanismgenerators.generator.multiblock.MixinFissionReactorMultiblockData",
+    "mekanismgenerators.generator.MixinTileEntityHeatGenerator",
+    "mekanismgenerators.generator.multiblock.MixinTurbineMultiblockData"
   ],
   "client": [
     "apotheosis.MixinSocketTooltipRenderer",
