@@ -3,6 +3,10 @@ package com.youtyan.apoex.mixin.mekanism.multiblock;
 import com.youtyan.apoex.IApoExGenerator;
 import com.youtyan.apoex.IApoExMekanism;
 import com.youtyan.apoex.IApoExMultiblock;
+import dev.shadowsoffire.apotheosis.adventure.affix.Affix;
+import dev.shadowsoffire.apotheosis.adventure.affix.AffixHelper;
+import dev.shadowsoffire.apotheosis.adventure.affix.AffixInstance;
+import dev.shadowsoffire.placebo.reload.DynamicHolder;
 import mekanism.api.Action;
 import mekanism.api.chemical.gas.IGasTank;
 import mekanism.api.energy.IEnergyContainer;
@@ -11,6 +15,7 @@ import mekanism.common.lib.multiblock.MultiblockCache;
 import mekanism.common.lib.multiblock.MultiblockData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.slf4j.Logger;
@@ -23,7 +28,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Mixin(value = MultiblockData.class, remap = false)
@@ -35,6 +43,9 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
 
     @Unique
     private float apoex_multiblock_consumptionAccumulator = 100F;
+
+    @Unique
+    private Map<DynamicHolder<? extends Affix>, AffixInstance> cachedAffixes = new HashMap<>();
 
     @Override
     public float getConsumptionAccumulator() {
@@ -68,7 +79,6 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
     @Unique private boolean isRecalculating = false;
     @Unique private long lastRecalculationTime = -1;
 
-    //<editor-fold desc="Getters and Setters">
     @Override
     public float getGenerationMultiplier() { return generationMultiplier; }
     @Override
@@ -105,7 +115,6 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
     public float getHeatCapacityMultiplier() { return this.heatCapacityMultiplier; }
     @Override
     public void setHeatCapacityMultiplier(float value) { this.heatCapacityMultiplier = value; }
-    //</editor-fold>
 
     @Override
     public void addAffixesFromTile(IApoExGenerator tile) {
@@ -118,6 +127,11 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
     }
 
     @Override
+    public Map<DynamicHolder<? extends Affix>, AffixInstance> getAffixes() {
+        return Collections.unmodifiableMap(this.cachedAffixes);
+    }
+
+    @Override
     public void recalculate(Level world, Set<BlockPos> locations) {
         if (isRecalculating || world.isClientSide() || world.getGameTime() == lastRecalculationTime) {
             return;
@@ -126,7 +140,6 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
         lastRecalculationTime = world.getGameTime();
 
         try {
-            // Reset values
             this.generationMultiplier = 0;
             this.fuelEfficiency = 0;
             this.heatEfficiency = 0;
@@ -135,7 +148,8 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
             this.tickSpeedMultiplier = 0;
             this.damageResistance = 0;
             this.heatCapacityMultiplier = 0;
-            this.apoex_multiblock_consumptionAccumulator = 100F; //カウンターをリセット
+            this.apoex_multiblock_consumptionAccumulator = 100F;
+            this.cachedAffixes.clear();
 
             if (locations != null) {
                 for (BlockPos pos : locations) {
@@ -143,7 +157,9 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
                     if (tile instanceof IApoExMekanism mekTile) {
                         CompoundTag data = mekTile.getApoExData();
                         if (data != null && !data.isEmpty()) {
-                            LOGGER.debug("[ApoEx Debug] Found apoexData at {}: {}", pos, data);
+                            ItemStack stack = new ItemStack(tile.getBlockState().getBlock());
+                            stack.setTag(data.copy());
+                            this.cachedAffixes.putAll(AffixHelper.getAffixes(stack));
 
                             if (tile instanceof IApoExGenerator gen) {
                                 this.addAffixesFromTile(gen);
@@ -166,14 +182,12 @@ public abstract class MixinMultiblockData implements IApoExMultiblock {
                 }
             }
             
-            // 効率が100%を超えないように99%にキャップする
             if (this.fuelEfficiency >= 1.0F) {
                 this.fuelEfficiency = 0.99F;
             }
 
             this.updateHeatCapacity();
 
-            // 容量変更後に保有量を調整する
             if (!world.isClientSide()) {
                 for (IEnergyContainer container : energyContainers) {
                     if (!container.isEmpty() && container.getEnergy().greaterThan(container.getMaxEnergy())) {

@@ -14,6 +14,4 @@ public abstract class MixinGuiChemicalGauge<CHEMICAL extends Chemical<CHEMICAL>,
     public MixinGuiChemicalGauge() {
         super(null, null, 0, 0, 0, 0, null, null);
     }
-
-    // Removed Overwrites as capacity is already adjusted in the tank itself
 }

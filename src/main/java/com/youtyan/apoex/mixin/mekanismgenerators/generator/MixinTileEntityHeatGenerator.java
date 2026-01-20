@@ -31,7 +31,6 @@ public abstract class MixinTileEntityHeatGenerator extends TileEntityGenerator {
     @Overwrite
     protected IFluidTankHolder getInitialFluidTanks(IContentsListener listener) {
         FluidTankHelper builder = FluidTankHelper.forSide(this::getDirection);
-        // Apply fuel capacity multiplier
         int capacity = MekanismGeneratorsConfig.generators.heatTankCapacity.get();
         if (this instanceof IApoExGenerator gen) {
             float mult = gen.getFuelCapacityMultiplier();

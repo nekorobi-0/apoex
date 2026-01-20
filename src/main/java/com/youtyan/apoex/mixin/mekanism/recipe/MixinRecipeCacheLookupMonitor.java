@@ -37,7 +37,6 @@ public class MixinRecipeCacheLookupMonitor<RECIPE extends MekanismRecipe> {
             try {
                 float reduction = apoExTile.getInputReduction();
                 if (reduction > 0 && handler instanceof TileEntityMekanism tile) {
-                    // inputSlots フィールドの代わりに getInventorySlots を使用
                     List<IInventorySlot> inputSlots = tile.getInventorySlots(null);
                     
                     if (inputSlots != null && !inputSlots.isEmpty()) {

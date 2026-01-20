@@ -48,7 +48,6 @@ public abstract class MixinChemicalCrystallizerCachedRecipe {
             method = "finishProcessing",
             at = @At(
                     value = "INVOKE",
-                    // Correctly target the method with a long parameter (J) instead of int (I)
                     target = "Lmekanism/api/recipes/inputs/BoxedChemicalInputHandler;use(Lmekanism/api/chemical/merged/BoxedChemicalStack;J)V"
             )
     )
@@ -64,12 +63,10 @@ public abstract class MixinChemicalCrystallizerCachedRecipe {
                 ChemicalStack<?> newStack = chemicalStack.copy();
                 newStack.setAmount(reducedAmount);
 
-                // Call use with the reduced amount and 1 operation, as we've already calculated the total
                 instance.use(BoxedChemicalStack.box(newStack), 1);
                 return;
             }
         }
-        // Fallback to original behavior
         instance.use(recipeInput, operations);
     }
 }

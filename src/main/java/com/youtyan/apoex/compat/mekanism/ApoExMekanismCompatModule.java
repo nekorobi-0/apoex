@@ -1,18 +1,13 @@
 package com.youtyan.apoex.compat.mekanism;
 
-import com.youtyan.apoex.ApoEXMod;
 import com.youtyan.apoex.affix.ApoExLootCategories;
 import com.youtyan.apoex.item.ApoExItems;
 import com.youtyan.apoex.item.mekanism.MekSuitsGemItem;
 import dev.shadowsoffire.apotheosis.adventure.loot.LootCategory;
-import mekanism.common.item.block.machine.ItemBlockMachine;
 import moffy.addonapi.AddonModule;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ApoExMekanismCompatModule implements AddonModule {

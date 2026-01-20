@@ -30,7 +30,6 @@ public class MixinMekanismUtils {
                 Affix affix = inst.affix().get();
                 if (affix instanceof MekanismStatAffix mekAffix) {
                     ResourceLocation id = inst.affix().getId();
-                    // アイテムの場合はレベルを取得するのが難しい場合があるが、AffixInstanceにはレベルが含まれている
                     float modifier = mekAffix.getModifier(inst.rarity().get(), inst.level());
 
                     if (id.getNamespace().equals(ApoEXMod.MODID)) {

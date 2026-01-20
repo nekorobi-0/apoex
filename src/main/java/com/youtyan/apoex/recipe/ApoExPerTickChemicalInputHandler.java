@@ -38,7 +38,7 @@ public class ApoExPerTickChemicalInputHandler<STACK extends ChemicalStack<?>> im
             if (amount > 0) {
                 STACK reducedInput = (STACK) recipeInput.copy();
                 reducedInput.setAmount(amount);
-                wrapped.use(reducedInput, operations); // operationsはそのまま渡す
+                wrapped.use(reducedInput, operations);
             }
         } else {
             wrapped.use(recipeInput, operations);

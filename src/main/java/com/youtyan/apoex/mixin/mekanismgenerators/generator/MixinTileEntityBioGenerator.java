@@ -31,7 +31,6 @@ public abstract class MixinTileEntityBioGenerator extends TileEntityGenerator {
     @Shadow EnergyInventorySlot energySlot;
     @Shadow private float lastFluidScale;
 
-    // Dummy constructor to satisfy Java compiler
     public MixinTileEntityBioGenerator() {
         super(null, null, null, null);
     }
@@ -39,7 +38,6 @@ public abstract class MixinTileEntityBioGenerator extends TileEntityGenerator {
     @Overwrite
     protected IFluidTankHolder getInitialFluidTanks(IContentsListener listener) {
         FluidTankHelper builder = FluidTankHelper.forSide(this::getDirection);
-        // Apply fuel capacity multiplier
         int capacity = MekanismGeneratorsConfig.generators.bioTankCapacity.get();
         if (this instanceof IApoExGenerator gen) {
             float mult = gen.getFuelCapacityMultiplier();
@@ -53,11 +51,6 @@ public abstract class MixinTileEntityBioGenerator extends TileEntityGenerator {
               mekanism.api.RelativeSide.BACK, mekanism.api.RelativeSide.TOP, mekanism.api.RelativeSide.BOTTOM);
         return builder.build();
     }
-
-    /**
-     * @author youtyan
-     * @reason Support ApoEx fuel efficiency
-     */
     @Overwrite
     protected void onUpdateServer() {
         super.onUpdateServer();

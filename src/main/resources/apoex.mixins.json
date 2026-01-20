@@ -5,22 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "apoex.refmap.json",
   "mixins": [
-    "apotheosis.MixinAttributeAffix",
-    "apotheosis.MixinLootController",
-    "astralmekanism.recipe.MixinGreenhouseCachedRecipe",
-    "evolvedmekanism.recipe.MixinThreeInputCachedRecipe",
-    "astralmekanism.recipe.MixinItemToItemItemCachedRecipe",
-    "astralmekanism.recipe.MixinAstralCraftingCachedRecipe",
-    "astralmekanism.recipe.MixinEssentialSmeltingCachedRecipe",
-    "astralmekanism.recipe.MixinMekanicalInscribeCachedRecipe",
-    "mekanismgenerators.MixinTileEntityGenerator",
-    "mekanismgenerators.generator.MixinTileEntityHeatGenerator",
-    "mekanismgenerators.generator.MixinTileEntityGasGenerator",
-    "mekanismgenerators.generator.MixinTileEntityBioGenerator",
-    "mekanismgenerators.generator.multiblock.MixinFusionReactorMultiblockData",
-    "mekanismgenerators.generator.multiblock.MixinFissionReactorMultiblockData",
-    "mekanismgenerators.generator.MixinTileEntityHeatGenerator",
-    "mekanismgenerators.generator.multiblock.MixinTurbineMultiblockData"
+    "apotheosis.MixinLootController"
   ],
   "client": [
     "apotheosis.MixinSocketTooltipRenderer",

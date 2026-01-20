@@ -66,7 +66,6 @@ public abstract class MixinFissionReactorMultiblockData extends MultiblockData i
     public void updateHeatCapacity() {
     }
 
-    //<editor-fold desc="Other Affix Implementations">
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE", target = "Lmekanism/common/capabilities/heat/VariableHeatCapacitor;create(DLjava/util/function/DoubleSupplier;Ljava/util/function/DoubleSupplier;Ljava/util/function/DoubleSupplier;Lmekanism/api/IContentsListener;)Lmekanism/common/capabilities/heat/VariableHeatCapacitor;"), index = 2)
     private DoubleSupplier apoex_modifyInsulation(DoubleSupplier insulation) {
         return () -> {
@@ -79,27 +78,22 @@ public abstract class MixinFissionReactorMultiblockData extends MultiblockData i
         };
     }
 
-    // 消費量減少 (toBurnを減らす)
     @ModifyVariable(method = "burnFuel", at = @At(value = "STORE"), name = "toBurn")
     private double apoex_modifyToBurn(double toBurn) {
         float efficiency = this.getFuelEfficiency();
         if (efficiency > 0) {
-            // 実際に消費する量を減らす
             return toBurn * (1.0F - efficiency);
         }
         return toBurn;
     }
 
-    // 熱生成補正 & 生産量増加
     @ModifyArg(method = "burnFuel", at = @At(value = "INVOKE", target = "Lmekanism/common/capabilities/heat/VariableHeatCapacitor;handleHeat(D)V"), index = 0)
     private double apoex_modifyHeatGeneration(double heat) {
         float efficiency = this.getFuelEfficiency();
         float genMult = this.getGenerationMultiplier();
-        
-        // toBurnが減らされているので、元の熱量に戻すための補正
+
         double correction = (efficiency > 0 && efficiency < 1.0F) ? (1.0 / (1.0 - efficiency)) : 1.0;
-        
-        // 生産量増加
+
         double boost = (genMult > 0) ? (1.0 + genMult) : 1.0;
         
         return heat * correction * boost;
@@ -225,5 +219,4 @@ public abstract class MixinFissionReactorMultiblockData extends MultiblockData i
         }
         return temp;
     }
-    //</editor-fold>
 }

@@ -37,39 +37,36 @@ public abstract class MixinEssentialSmeltingCachedRecipe {
                 ItemStack item = this.recipeOutput.itemStack();
                 InfusionStack infuse = this.recipeOutput.infusionStack();
 
-                // Item output multiplication
                 if (!item.isEmpty()) {
                     float totalItemCount = item.getCount() * (1.0F + multiplier);
-                    float storedItemFraction = tile.getStoredOutputFraction(); // Reusing for item fraction
+                    float storedItemFraction = tile.getStoredOutputFraction();
                     totalItemCount += storedItemFraction;
                     int newItemCount = (int) totalItemCount;
                     float newItemFraction = totalItemCount - newItemCount;
-                    tile.setStoredOutputFraction(newItemFraction); // Store item fraction
+                    tile.setStoredOutputFraction(newItemFraction);
 
                     if (newItemCount > 0) {
                         ItemStack newItem = item.copy();
                         newItem.setCount(newItemCount);
-                        item = newItem; // Update item for the new ItemInfuseOutput
+                        item = newItem;
                     }
                 }
 
-                // Infusion output multiplication (existing logic)
                 if (!infuse.isEmpty()) {
                     float totalInfuseAmount = infuse.getAmount() * (1.0F + multiplier);
-                    float storedInfuseFraction = tile.getStoredOutputFraction(); // This might conflict if used for both
+                    float storedInfuseFraction = tile.getStoredOutputFraction();
                     totalInfuseAmount += storedInfuseFraction;
                     long newInfuseAmount = (long) totalInfuseAmount;
                     float newInfuseFraction = totalInfuseAmount - newInfuseAmount;
-                    tile.setStoredOutputFraction(newInfuseFraction); // Store infuse fraction
+                    tile.setStoredOutputFraction(newInfuseFraction);
 
                     if (newInfuseAmount > 0) {
                         InfusionStack newInfuse = infuse.copy();
                         newInfuse.setAmount(newInfuseAmount);
-                        infuse = newInfuse; // Update infuse for the new ItemInfuseOutput
+                        infuse = newInfuse;
                     }
                 }
 
-                // Create new ItemInfuseOutput with modified item and infuse stacks
                 this.recipeOutput = new ItemInfuseOutput(item, infuse);
             }
         }

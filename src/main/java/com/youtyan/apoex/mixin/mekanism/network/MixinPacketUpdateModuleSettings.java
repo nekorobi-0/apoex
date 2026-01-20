@@ -36,15 +36,12 @@ public abstract class MixinPacketUpdateModuleSettings {
 
             ItemStack stack = player.getInventory().getItem(slotId);
             if (MekSuitGemIntegration.isMekArmor(stack)) {
-                // ApoExアーマーの場合、ApoExModuleHelperを使用してモジュールを取得
                 IModule<?> module = ApoExModuleHelper.getModule(stack, moduleType);
                 if (module instanceof Module<?> impl) {
-                    // getConfigItems() から取得
                     List<ModuleConfigItem<?>> configItems = impl.getConfigItems();
                     if (dataIndex >= 0 && dataIndex < configItems.size()) {
                         ModuleConfigItem<?> configItem = configItems.get(dataIndex);
                         if (configItem != null) {
-                            // ShadowしたsetValueを使用して値を設定
                             setValue(configItem);
                         }
                     }
@@ -52,7 +49,6 @@ public abstract class MixinPacketUpdateModuleSettings {
             }
         });
 
-        // ApoExアーマーの場合、ここで処理を行ったとみなしてパケット処理を完了させる
         Player player = context.getSender();
         if (player != null) {
             ItemStack stack = player.getInventory().getItem(slotId);

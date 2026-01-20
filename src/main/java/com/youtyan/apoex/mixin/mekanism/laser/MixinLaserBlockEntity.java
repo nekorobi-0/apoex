@@ -1,5 +1,6 @@
 package com.youtyan.apoex.mixin.mekanism.laser;
 
+
 import com.youtyan.apoex.IApoExMekanism;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.capabilities.energy.BasicEnergyContainer;
@@ -7,6 +8,8 @@ import mekanism.common.tile.laser.TileEntityLaser;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+
+/*
 
 @Mixin(value = TileEntityLaser.class, remap = false)
 public abstract class MixinLaserBlockEntity {
@@ -26,3 +29,5 @@ public abstract class MixinLaserBlockEntity {
         });
     }
 }
+
+ */

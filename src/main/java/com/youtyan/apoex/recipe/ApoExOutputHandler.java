@@ -32,7 +32,7 @@ public class ApoExOutputHandler<OUTPUT> implements IOutputHandler<OUTPUT> {
             storedFraction = this.tile.getStoredOutputFraction();
         } else if (this.multiblock != null) {
             multiplier = this.multiblock.getGenerationMultiplier();
-            storedFraction = this.multiblock.getStoredFuelFraction(); // StoredFuelFractionを流用
+            storedFraction = this.multiblock.getStoredFuelFraction();
         }
 
         if (multiplier > 0) {
@@ -45,7 +45,7 @@ public class ApoExOutputHandler<OUTPUT> implements IOutputHandler<OUTPUT> {
             if (this.tile != null) {
                 this.tile.setStoredOutputFraction(newFraction);
             } else if (this.multiblock != null) {
-                this.multiblock.setStoredFuelFraction(newFraction); // StoredFuelFractionを流用
+                this.multiblock.setStoredFuelFraction(newFraction);
             }
             
             if (baseOps > 0) {

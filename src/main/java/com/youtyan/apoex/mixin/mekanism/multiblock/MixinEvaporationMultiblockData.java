@@ -29,20 +29,16 @@ public abstract class MixinEvaporationMultiblockData implements IApoExMultiblock
         this.apoex_evaporation_consumptionAccumulator = value;
     }
 
-    // 温度上昇 (生産効率)
     @Inject(method = "getTemperature", at = @At("RETURN"), cancellable = true)
     private void apoex_getTemperature(CallbackInfoReturnable<Double> cir) {
-        // 'this' is already an instance of IApoExMultiblock
         float mult = this.getHeatEfficiency();
         if (mult > 0) {
             cir.setReturnValue(cir.getReturnValue() * (1.0 + mult));
         }
     }
 
-    // タンク容量増加
     @Inject(method = "getMaxFluid", at = @At("RETURN"), cancellable = true)
     private void apoex_getMaxFluid(CallbackInfoReturnable<Integer> cir) {
-        // 'this' is already an instance of IApoExMultiblock
         float mult = this.getFuelCapacityMultiplier();
         if (mult > 0) {
             long newCapacity = (long) (cir.getReturnValue() * (1.0F + mult));
@@ -50,21 +46,19 @@ public abstract class MixinEvaporationMultiblockData implements IApoExMultiblock
         }
     }
 
-    // 消費量減少
     @ModifyArg(
         method = "createNewCachedRecipe",
         at = @At(value = "INVOKE", target = "Lmekanism/api/recipes/cache/OneInputCachedRecipe;fluidToFluid(Lmekanism/api/recipes/FluidToFluidRecipe;Ljava/util/function/BooleanSupplier;Lmekanism/api/recipes/inputs/IInputHandler;Lmekanism/api/recipes/outputs/IOutputHandler;)Lmekanism/api/recipes/cache/OneInputCachedRecipe;"),
-        index = 2 // IInputHandler のインデックス
+        index = 2
     )
     private IInputHandler<?> apoex_wrapInputHandler(IInputHandler<?> original) {
         return new ApoExSkippingInputHandler(original, this);
     }
 
-    // 生産量増加
     @ModifyArg(
         method = "createNewCachedRecipe",
         at = @At(value = "INVOKE", target = "Lmekanism/api/recipes/cache/OneInputCachedRecipe;fluidToFluid(Lmekanism/api/recipes/FluidToFluidRecipe;Ljava/util/function/BooleanSupplier;Lmekanism/api/recipes/inputs/IInputHandler;Lmekanism/api/recipes/outputs/IOutputHandler;)Lmekanism/api/recipes/cache/OneInputCachedRecipe;"),
-        index = 3 // IOutputHandler のインデックス
+        index = 3
     )
     private IOutputHandler<?> apoex_wrapOutputHandler(IOutputHandler<?> original) {
         return new ApoExOutputHandler<>(original, this);

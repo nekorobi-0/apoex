@@ -46,7 +46,6 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
     @Unique
     private float energyEfficiencyMult = 0;
 
-    // Generator specific
     @Unique
     private float generationMultiplier = 0;
     @Unique
@@ -242,7 +241,6 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
             this.fuelCapacityMultiplier = this.apoexData.getFloat("fuel_capacity_multiplier");
             this.heatCapacityMultiplier = this.apoexData.getFloat("heat_capacity_multiplier");
 
-            // Update capacity before loading tank data
             this.updateCapacity();
 
             if ((Object) this instanceof ITileUpgradable upgradable) {
@@ -275,7 +273,6 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
     private void apoex_getReducedUpdateTag(CallbackInfoReturnable<CompoundTag> cir) {
         CompoundTag tag = cir.getReturnValue();
         if (!this.apoexData.isEmpty()) {
-            // Ensure data is up to date in apoexData
             this.apoexData.putFloat("tick_speed_mult", this.tickSpeedMult);
             this.apoexData.putFloat("output_multiplier", this.outputMultiplier);
             this.apoexData.putFloat("input_reduction", this.inputReduction);
@@ -312,7 +309,6 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
             this.fuelCapacityMultiplier = this.apoexData.getFloat("fuel_capacity_multiplier");
             this.heatCapacityMultiplier = this.apoexData.getFloat("heat_capacity_multiplier");
             
-            // Update capacity on client side
             this.updateCapacity();
         }
     }
@@ -334,12 +330,9 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
                     int totalTicks = 1 + (int) tickSpeed;
                     float partial = tickSpeed - (int) tickSpeed;
 
-                    // Optimization for TileEntityRecipeMachine
                     if (tile instanceof TileEntityRecipeMachine) {
-                        // Run normal tick once
                         TileEntityMekanism.tickServer(level, pos, state, tile);
 
-                        // Run recipe processing loop for the remaining ticks
                         RecipeCacheLookupMonitor<?> monitor = ((TileEntityRecipeMachineAccessor) tile).getRecipeCacheLookupMonitor();
                         
                         int extraLoops = (int) tickSpeed;
@@ -347,11 +340,8 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
                             extraLoops++;
                         }
 
-                        // Limit loop count to prevent extreme lag
                         int maxLoops = 64; 
                         if (extraLoops > maxLoops) {
-                            // If we exceed max loops, we just cap it. 
-                            // Ideally we would multiply the effect, but that's hard with Mekanism's structure.
                             extraLoops = maxLoops;
                         }
 
@@ -359,13 +349,11 @@ public abstract class MixinTileEntityMekanism implements IApoExMekanism, IApoExG
                             monitor.updateAndProcess();
                         }
                     } else {
-                        // Fallback for other machines
                         int loopCount = totalTicks;
                         if (partial > 0 && level.random.nextFloat() < partial) {
                             loopCount++;
                         }
                         
-                        // Limit loop count here as well
                         int maxLoops = 64;
                         if (loopCount > maxLoops) {
                             loopCount = maxLoops;

@@ -56,7 +56,6 @@ public abstract class MixinMekanicalInscribeCachedRecipe {
                         this.outputHandler = new ApoExOutputHandler<>(this.outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

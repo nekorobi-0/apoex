@@ -27,7 +27,6 @@ import java.util.function.Predicate;
 @Mixin(value = FusionReactorMultiblockData.class, remap = false)
 public abstract class MixinFusionReactorMultiblockData {
 
-    // 消費量減少 (fuelBurned変数は変更せず、実際の消費だけ減らす)
     @Redirect(method = "burnFuel", at = @At(value = "INVOKE", target = "Lmekanism/api/chemical/gas/IGasTank;shrinkStack(JLmekanism/api/Action;)J"))
     private long apoex_redirectShrinkStack(IGasTank instance, long amount, Action action) {
         if (this instanceof IApoExMultiblock multiblock) {
@@ -36,14 +35,12 @@ public abstract class MixinFusionReactorMultiblockData {
                 long actualConsumption = (long) (amount * (1.0F - efficiency));
                 actualConsumption = Math.max(0, actualConsumption);
                 instance.shrinkStack(actualConsumption, action);
-                // 消費量を偽って、本来の処理量を返す
                 return amount;
             }
         }
         return instance.shrinkStack(amount, action);
     }
 
-    // 生産量増加 (熱生成量の増加)
     @Redirect(method = "burnFuel", at = @At(value = "INVOKE", target = "Lmekanism/api/math/FloatingLong;multiply(J)Lmekanism/api/math/FloatingLong;"))
     private FloatingLong apoex_redirectEnergyCalculation(FloatingLong instance, long value) {
         FloatingLong result = instance.multiply(value);
@@ -161,8 +158,7 @@ public abstract class MixinFusionReactorMultiblockData {
             }
         }
         double newTemp = instance.getPlasmaTemp() + modifiedTempIncrease;
-        
-        // 制限を撤廃し、自然な計算結果に任せる
+
         instance.setPlasmaTemp(Math.max(0, newTemp));
     }
 
@@ -171,7 +167,6 @@ public abstract class MixinFusionReactorMultiblockData {
         if (this instanceof IApoExMultiblock multiblock) {
             float mult = multiblock.getHeatEfficiency();
             if (mult > 0) {
-                // 外部からの加熱も効率アップ
                 return energyAdded.multiply(1.0F + mult);
             }
         }

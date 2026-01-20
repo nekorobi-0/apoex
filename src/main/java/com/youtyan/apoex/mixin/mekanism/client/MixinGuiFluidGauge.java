@@ -12,6 +12,4 @@ public abstract class MixinGuiFluidGauge extends GuiTankGauge<FluidStack, IExten
     public MixinGuiFluidGauge() {
         super(null, null, 0, 0, 0, 0, null, null);
     }
-
-    // Removed Overwrites as capacity is already adjusted in the tank itself
 }

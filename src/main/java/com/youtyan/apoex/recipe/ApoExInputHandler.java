@@ -33,7 +33,6 @@ public class ApoExInputHandler implements IInputHandler<@NotNull ItemStack> {
                 if (recipeIngredient.testType(stored)) {
                     long originalNeeded = recipeIngredient.getNeededAmount(stored);
                     if (originalNeeded > 0) {
-                        // 削減後の必要数を計算
                         int reducedNeeded = Math.max(1, (int) (originalNeeded * (1.0F - reduction)));
 
                         if (stored.getCount() >= reducedNeeded) {
@@ -53,7 +52,6 @@ public class ApoExInputHandler implements IInputHandler<@NotNull ItemStack> {
     public void use(@NotNull ItemStack recipeInput, int operations) {
         float reduction = tile.getInputReduction();
         if (reduction > 0 && reduction < 1.0F) {
-            // 1回あたりの消費量を計算して渡す
             int perOp = Math.max(1, (int) (recipeInput.getCount() * (1.0F - reduction)));
 
             ItemStack reducedInput = recipeInput.copy();

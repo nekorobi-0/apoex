@@ -48,7 +48,6 @@ public abstract class MixinThreeInputCachedRecipe<INPUT_A, INPUT_B, INPUT_C, OUT
             IApoExMekanism tile = ApoExContext.MEKANISM_TILE.get();
             if (tile != null) {
                 try {
-                    // Input A
                     if (this.inputHandler instanceof ILongInputHandler && this.inputHandler.getInput() instanceof ChemicalStack && !(this.inputHandler instanceof ApoExChemicalInputHandler)) {
                         this.inputHandler = (IInputHandler<INPUT_A>) new ApoExChemicalInputHandler((ILongInputHandler<ChemicalStack<?>>) this.inputHandler, tile);
                     } else if (this.inputHandler.getInput() instanceof ItemStack && !(this.inputHandler instanceof ApoExInputHandler)) {
@@ -57,7 +56,6 @@ public abstract class MixinThreeInputCachedRecipe<INPUT_A, INPUT_B, INPUT_C, OUT
                         this.inputHandler = (IInputHandler<INPUT_A>) new ApoExFluidInputHandler((IInputHandler<FluidStack>) this.inputHandler, tile);
                     }
 
-                    // Input B
                     if (this.secondaryInputHandler instanceof ILongInputHandler && this.secondaryInputHandler.getInput() instanceof ChemicalStack && !(this.secondaryInputHandler instanceof ApoExChemicalInputHandler)) {
                         this.secondaryInputHandler = (IInputHandler<INPUT_B>) new ApoExChemicalInputHandler((ILongInputHandler<ChemicalStack<?>>) this.secondaryInputHandler, tile);
                     } else if (this.secondaryInputHandler.getInput() instanceof ItemStack && !(this.secondaryInputHandler instanceof ApoExInputHandler)) {
@@ -66,7 +64,6 @@ public abstract class MixinThreeInputCachedRecipe<INPUT_A, INPUT_B, INPUT_C, OUT
                         this.secondaryInputHandler = (IInputHandler<INPUT_B>) new ApoExFluidInputHandler((IInputHandler<FluidStack>) this.secondaryInputHandler, tile);
                     }
 
-                    // Input C
                     if (this.tertiaryInputHandler instanceof ILongInputHandler && this.tertiaryInputHandler.getInput() instanceof ChemicalStack && !(this.tertiaryInputHandler instanceof ApoExChemicalInputHandler)) {
                         this.tertiaryInputHandler = (IInputHandler<INPUT_C>) new ApoExChemicalInputHandler((ILongInputHandler<ChemicalStack<?>>) this.tertiaryInputHandler, tile);
                     } else if (this.tertiaryInputHandler.getInput() instanceof ItemStack && !(this.tertiaryInputHandler instanceof ApoExInputHandler)) {
@@ -75,12 +72,10 @@ public abstract class MixinThreeInputCachedRecipe<INPUT_A, INPUT_B, INPUT_C, OUT
                         this.tertiaryInputHandler = (IInputHandler<INPUT_C>) new ApoExFluidInputHandler((IInputHandler<FluidStack>) this.tertiaryInputHandler, tile);
                     }
 
-                    // Output
                     if (!(this.outputHandler instanceof ApoExOutputHandler)) {
                         this.outputHandler = new ApoExOutputHandler<>(this.outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

@@ -39,7 +39,6 @@ public class ApoEXMod {
         RECIPE_SERIALIZERS.register(modEventBus);
         MinecraftForge.EVENT_BUS.register(this);
 
-        // Generator categories must be registered first to take precedence
         ApoExGeneratorCategories.init();
         ApoExLootCategories.init();
 

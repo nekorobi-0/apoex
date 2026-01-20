@@ -23,7 +23,6 @@ public abstract class MixinTurbineMultiblockData {
     @Shadow public abstract int getDispersers();
     @Shadow public IExtendedFluidTank ventTank;
 
-    // 燃料効率 (Fuel Efficiency) - 蒸気消費を減少
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lmekanism/api/chemical/gas/IGasTank;shrinkStack(JLmekanism/api/Action;)J"))
     private long apoex_shrinkStack_redirect(mekanism.api.chemical.gas.IGasTank instance, long amount, Action action) {
         if (this instanceof IApoExMultiblock multiblock) {
@@ -32,14 +31,12 @@ public abstract class MixinTurbineMultiblockData {
                 long actualConsumption = (long) (amount * (1.0F - efficiency));
                 actualConsumption = Math.max(0, actualConsumption);
                 instance.shrinkStack(actualConsumption, action);
-                // 消費量を偽って、本来の処理量を返す (エネルギー計算には影響させないため)
                 return amount;
             }
         }
         return instance.shrinkStack(amount, action);
     }
 
-    // 発電量倍率 (Generation Multiplier) - エネルギー生成量を増加
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lmekanism/api/math/FloatingLong;multiply(J)Lmekanism/api/math/FloatingLong;"))
     private FloatingLong apoex_redirectEnergyMultiplierCalculation(FloatingLong instance, long value) {
         FloatingLong result = instance.multiply(value);
@@ -52,14 +49,11 @@ public abstract class MixinTurbineMultiblockData {
         return result;
     }
 
-    // 燃料容量 (Fuel Capacity) - 流量制限を緩和
     @ModifyVariable(method = "tick", at = @At(value = "STORE"), name = "proportion")
     private double apoex_capProportion(double proportion) {
-        // Remove cap to allow infinite scaling based on stored steam
         return proportion;
     }
 
-    // 発電量倍率 (Generation Multiplier) - 最大発電量表示
     @Inject(method = "getMaxProduction", at = @At("RETURN"), cancellable = true)
     private void apoex_getMaxProduction(CallbackInfoReturnable<FloatingLong> cir) {
         if (this instanceof IApoExMultiblock multiblock) {
@@ -70,7 +64,6 @@ public abstract class MixinTurbineMultiblockData {
         }
     }
     
-    // 燃料容量 (Fuel Capacity) - 最大流量
     @Inject(method = "getMaxFlowRate", at = @At("HEAD"), cancellable = true)
     private void apoex_getMaxFlowRate(CallbackInfoReturnable<Long> cir) {
         TurbineMultiblockData self = (TurbineMultiblockData) (Object) this;
@@ -89,7 +82,6 @@ public abstract class MixinTurbineMultiblockData {
         cir.setReturnValue(rate.longValue());
     }
     
-    // 燃料容量 (Fuel Capacity) - 蒸気タンク容量
     @Inject(method = "getSteamCapacity", at = @At("RETURN"), cancellable = true)
     private void apoex_getSteamCapacity(CallbackInfoReturnable<Long> cir) {
         if (this instanceof IApoExMultiblock multiblock) {
@@ -100,7 +92,6 @@ public abstract class MixinTurbineMultiblockData {
         }
     }
     
-    // 発電量倍率 (Generation Multiplier) - 発電量表示
     @Inject(method = "getProductionRate", at = @At("RETURN"), cancellable = true)
     private void apoex_getProductionRate(CallbackInfoReturnable<FloatingLong> cir) {
         if (this instanceof IApoExMultiblock multiblock) {
@@ -111,7 +102,6 @@ public abstract class MixinTurbineMultiblockData {
                 rate = rate.multiply(1.0F + mult);
             }
             
-            // Apply tick speed multiplier to display value to match actual production
             float tickSpeed = multiblock.getTickSpeedMultiplier();
             if (tickSpeed > 0) {
                 rate = rate.multiply(1.0F + tickSpeed);
@@ -123,7 +113,6 @@ public abstract class MixinTurbineMultiblockData {
         }
     }
     
-    // エネルギー容量 (Energy Capacity) & 燃料容量 (Fuel Capacity) - エネルギー容量
     @Inject(method = "getEnergyCapacity", at = @At("RETURN"), cancellable = true)
     private void apoex_getEnergyCapacity(CallbackInfoReturnable<FloatingLong> cir) {
         if (this instanceof IApoExMultiblock multiblock) {
@@ -145,7 +134,6 @@ public abstract class MixinTurbineMultiblockData {
         }
     }
     
-    // 燃料容量 (Fuel Capacity) - ディスパーサー数 (流量計算用)
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lmekanism/generators/common/content/turbine/TurbineMultiblockData;getDispersers()I"))
     private int apoex_getDispersers(TurbineMultiblockData instance) {
         int dispersers = instance.getDispersers();
@@ -158,7 +146,6 @@ public abstract class MixinTurbineMultiblockData {
         return dispersers;
     }
     
-    // 燃料容量 (Fuel Capacity) - ベント数 (流量計算用)
     @Redirect(method = "tick", at = @At(value = "FIELD", target = "Lmekanism/generators/common/content/turbine/TurbineMultiblockData;vents:I"))
     private int apoex_getVents(TurbineMultiblockData instance) {
         int vents = instance.vents;
@@ -171,7 +158,6 @@ public abstract class MixinTurbineMultiblockData {
         return vents;
     }
     
-    // 燃料容量 (Fuel Capacity) - 蒸気容量 (tick内計算用)
     @Redirect(method = "tick", at = @At(value = "INVOKE", target = "Lmekanism/generators/common/content/turbine/TurbineMultiblockData;getSteamCapacity()J"))
     private long apoex_getSteamCapacity_tick(TurbineMultiblockData instance) {
         long capacity = instance.getSteamCapacity();
@@ -184,8 +170,6 @@ public abstract class MixinTurbineMultiblockData {
         return capacity;
     }
 
-    // 発電量倍率 (Generation Multiplier) - 水生成量 (凝縮水)
-    // @ModifyArg ではなく @Inject(shift = AFTER) を使用して競合を回避
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lmekanism/api/fluid/IExtendedFluidTank;setStack(Lnet/minecraftforge/fluids/FluidStack;)V", shift = At.Shift.AFTER))
     private void apoex_postSetVentTankStack(net.minecraft.world.level.Level world, CallbackInfoReturnable<Boolean> cir) {
         if (this instanceof IApoExMultiblock multiblock) {

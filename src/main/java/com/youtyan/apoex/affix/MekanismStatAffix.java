@@ -36,7 +36,6 @@ public class MekanismStatAffix extends Affix {
 
     @Override
     public MutableComponent getDescription(ItemStack stack, LootRarity rarity, float level) {
-        // ツールチップは共通化するため、_additionsを取り除く
         ResourceLocation id = this.getId();
         String path = id.getPath().replace("_additions", "");
         String key = String.format("affix.%s.%s.desc", id.getNamespace(), path.replace('/', '.'));
@@ -48,7 +47,6 @@ public class MekanismStatAffix extends Affix {
 
     @Override
     public Component getName(boolean prefix) {
-        // Affix名は区別するため、_additionsを取り除かない
         ResourceLocation id = this.getId();
         String path = id.getPath();
         String key = String.format("affix.%s.%s", id.getNamespace(), path.replace('/', '.'));

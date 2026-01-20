@@ -1,5 +1,11 @@
 {
   "type": "apoex:mekanism_stat",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    }
+  ],
   "desc": "affix.apoex.mekanism.multiblock.sps.energy_capacity",
   "types": [
     "apoex:sps"

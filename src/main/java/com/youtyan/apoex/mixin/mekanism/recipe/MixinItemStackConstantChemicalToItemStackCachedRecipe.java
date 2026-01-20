@@ -44,20 +44,16 @@ public abstract class MixinItemStackConstantChemicalToItemStackCachedRecipe<RECI
             IApoExMekanism tile = ApoExContext.MEKANISM_TILE.get();
             if (tile != null) {
                 try {
-                    // Item Input handler
                     if (!(itemInputHandler instanceof ApoExInputHandler)) {
                         this.itemInputHandler = new ApoExInputHandler(itemInputHandler, tile);
                     }
-                    // Chemical Input handler
                     if (!(chemicalInputHandler instanceof ApoExChemicalInputHandler)) {
                         this.chemicalInputHandler = new ApoExChemicalInputHandler(this.chemicalInputHandler, tile);
                     }
-                    // Output handler
                     if (!(outputHandler instanceof ApoExOutputHandler)) {
                         this.outputHandler = new ApoExOutputHandler<>(outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

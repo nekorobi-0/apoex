@@ -19,7 +19,6 @@ public interface IApoExMekanism {
     float getStoredOutputFraction();
     void setStoredOutputFraction(float value);
 
-    // Methods for consumption skipping
     float getConsumptionAccumulator();
     void setConsumptionAccumulator(float value);
 
@@ -32,6 +31,5 @@ public interface IApoExMekanism {
 
     void sendUpdatePacket();
 
-    // Added for capacity update
     default void updateCapacity() {}
 }

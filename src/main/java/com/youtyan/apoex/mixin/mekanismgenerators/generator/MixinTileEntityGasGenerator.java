@@ -52,7 +52,6 @@ public abstract class MixinTileEntityGasGenerator extends mekanism.generators.co
                     capacityField.setLong(fuelTank, newCapacity);
                 }
             } catch (Exception e) {
-                // e.printStackTrace();
             }
         }
     }

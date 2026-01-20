@@ -18,7 +18,4 @@ public interface MachineEnergyContainerAccessor {
 
     @Accessor("currentEnergyPerTick")
     void setCurrentEnergyPerTick(FloatingLong energyPerTick);
-    
-    @Accessor("baseEnergyPerTick")
-    FloatingLong getBaseEnergyPerTick();
 }

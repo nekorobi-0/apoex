@@ -5,7 +5,7 @@ import com.youtyan.apoex.IApoExMekanism;
 import com.youtyan.apoex.recipe.ApoExFluidInputHandler;
 import com.youtyan.apoex.recipe.ApoExInputHandler;
 import com.youtyan.apoex.recipe.ApoExOutputHandler;
-import com.youtyan.apoex.recipe.ApoExPerTickChemicalInputHandler; // Gas is a chemical
+import com.youtyan.apoex.recipe.ApoExPerTickChemicalInputHandler;
 import com.youtyan.apoex.util.ApoExContext;
 import mekanism.api.chemical.gas.GasStack;
 import mekanism.api.recipes.cache.CachedRecipe;
@@ -47,26 +47,21 @@ public abstract class MixinAstralCraftingCachedRecipe {
             IApoExMekanism tile = ApoExContext.MEKANISM_TILE.get();
             if (tile != null) {
                 try {
-                    // Item Inputs
                     for (int i = 0; i < this.itemInputHandlers.length; i++) {
                         if (!(this.itemInputHandlers[i] instanceof ApoExInputHandler)) {
                             this.itemInputHandlers[i] = new ApoExInputHandler(this.itemInputHandlers[i], tile);
                         }
                     }
-                    // Fluid Input
                     if (!(this.fluidInputHandler instanceof ApoExFluidInputHandler)) {
                         this.fluidInputHandler = new ApoExFluidInputHandler(this.fluidInputHandler, tile);
                     }
-                    // Gas Input (Treat as per-tick chemical)
                     if (!(this.gasInputHandler instanceof ApoExPerTickChemicalInputHandler)) {
                         this.gasInputHandler = new ApoExPerTickChemicalInputHandler(this.gasInputHandler, tile);
                     }
-                    // Output
                     if (!(this.outputHandler instanceof ApoExOutputHandler)) {
                         this.outputHandler = new ApoExOutputHandler<>(this.outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

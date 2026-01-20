@@ -48,7 +48,7 @@ public class ApoExSkippingInputHandler implements ILongInputHandler {
         if (this.tile != null) {
             reduction = this.tile.getInputReduction();
         } else if (this.multiblock != null) {
-            reduction = this.multiblock.getFuelEfficiency(); // fuelEfficiency を流用
+            reduction = this.multiblock.getFuelEfficiency();
         }
 
         if (reduction >= 1.0F) return;

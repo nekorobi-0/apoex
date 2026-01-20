@@ -13,10 +13,7 @@
     "client.ChemicalFluidBarDecoratorAccessor",
     "client.MixinGuiModuleTweaker",
     "client.MixinHUDRenderer",
-    "client.MixinArmorItemClient",
-    "client.MixinGuiChemicalGauge",
-    "client.MixinGuiFluidGauge",
-    "client.MixinGuiIndustrialTurbine"
+    "client.MixinArmorItemClient"
   ],
   "mixins": [
     "inventory.MixinModuleTweakerContainer",
@@ -30,7 +27,6 @@
     "block.MixinBlockMekanism",
     "api.MixinMachineEnergyContainer",
     "accessor.MachineEnergyContainerAccessor",
-    "accessor.TileEntityProgressMachineAccessor",
     "accessor.TileEntityRecipeMachineAccessor",
     "tile.MixinTileEntityMekanism",
     "item.block.MixinItemBlockMachine",
@@ -46,6 +42,7 @@
     "recipe.MixinChemicalDissolutionCachedRecipe",
     "multiblock.MixinSPSMultiblockData",
     "multiblock.MixinEvaporationMultiblockData",
+    "multiblock.MixinBoilerMultiblockData",
     "multiblock.MixinMultiblockData",
     "multiblock.MixinTileEntityMultiblock",
     "api.MixinVariableCapacityFluidTank",

@@ -1,5 +1,15 @@
 {
   "type": "apoex:mekanism_stat",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanism"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "mekanismgenerators"
+    }
+  ],
   "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.fuel_capacity",
   "types": [
     "apoex:fission_reactor"

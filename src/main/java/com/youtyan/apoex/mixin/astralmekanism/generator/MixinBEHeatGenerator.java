@@ -2,82 +2,30 @@ package com.youtyan.apoex.mixin.astralmekanism.generator;
 
 import astral_mekanism.block.blockentity.generator.BEHeatGenerator;
 import com.youtyan.apoex.IApoExGenerator;
+import mekanism.api.math.FloatingLong;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = BEHeatGenerator.class, remap = false)
 public abstract class MixinBEHeatGenerator implements IApoExGenerator {
 
-    @Unique
-    private float generationMultiplier = 0;
-    @Unique
-    private float fuelEfficiency = 0;
-    @Unique
-    private float heatEfficiency = 0;
-    @Unique
-    private float storedFuelFraction = 0;
-    @Unique
-    private float fuelCapacityMultiplier = 0;
-    @Unique
-    private float heatCapacityMultiplier = 0;
-
-    @Override
-    public float getGenerationMultiplier() {
-        return this.generationMultiplier;
+    @ModifyVariable(method = "simulate", at = @At(value = "STORE"), name = "energyFromHeat")
+    private FloatingLong apoex_modifyEnergyFromHeat(FloatingLong energyFromHeat) {
+        float mult = this.getGenerationMultiplier();
+        if (mult > 0) {
+            return energyFromHeat.multiply(1.0F + mult);
+        }
+        return energyFromHeat;
     }
 
-    @Override
-    public void setGenerationMultiplier(float value) {
-        this.generationMultiplier = value;
-    }
-
-    @Override
-    public float getFuelEfficiency() {
-        return this.fuelEfficiency;
-    }
-
-    @Override
-    public void setFuelEfficiency(float value) {
-        this.fuelEfficiency = value;
-    }
-
-    @Override
-    public float getHeatEfficiency() {
-        return this.heatEfficiency;
-    }
-
-    @Override
-    public void setHeatEfficiency(float value) {
-        this.heatEfficiency = value;
-    }
-
-    @Override
-    public float getStoredFuelFraction() {
-        return this.storedFuelFraction;
-    }
-
-    @Override
-    public void setStoredFuelFraction(float value) {
-        this.storedFuelFraction = value;
-    }
-
-    @Override
-    public float getFuelCapacityMultiplier() {
-        return this.fuelCapacityMultiplier;
-    }
-
-    @Override
-    public void setFuelCapacityMultiplier(float value) {
-        this.fuelCapacityMultiplier = value;
-    }
-
-    @Override
-    public float getHeatCapacityMultiplier() {
-        return this.heatCapacityMultiplier;
-    }
-
-    @Override
-    public void setHeatCapacityMultiplier(float value) {
-        this.heatCapacityMultiplier = value;
+    @Inject(method = "getBoost", at = @At("RETURN"), cancellable = true)
+    private void apoex_getBoost(CallbackInfoReturnable<FloatingLong> cir) {
+        float mult = this.getHeatEfficiency();
+        if (mult > 0) {
+            cir.setReturnValue(cir.getReturnValue().multiply(1.0F + mult));
+        }
     }
 }

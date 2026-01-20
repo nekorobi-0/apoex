@@ -110,7 +110,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    // Apotheosis系の依存関係
+    //依存関係
     implementation fg.deobf("curse.maven:apotheosis-313970:6461960")
     implementation fg.deobf("curse.maven:placebo-283644:6274231")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
@@ -123,6 +123,7 @@ dependencies {
     implementation fg.deobf("curse.maven:applied-energistics-2-223794:7148487")
     implementation fg.deobf("curse.maven:guideme-1173950:7127447")
     implementation fg.deobf("curse.maven:iglee-library-541199:6987117")
+    implementation fg.deobf("curse.maven:jade-324717:6855440")
     
     // Mekanism
     implementation fg.deobf("mekanism:Mekanism:${mekanism_version}")
@@ -153,7 +154,14 @@ tasks.named('processResources', ProcessResources).configure {
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
             apo_version: apo_version, apo_additions_version: apo_additions_version, apo_modern_ragnarok_version: apo_modern_ragnarok_version,
-            mekanism_version: mekanism_version, addonapi_version: addonapi_version, jei_version: jei_version
+            mekanism_version: mekanism_version,
+            addonapi_version: addonapi_version,
+            jei_version: jei_version,
+            jade_version: jade_version,
+            astral_mekanism_version: astral_mekanism_version,
+            evolved_mekanism_version: evolved_mekanism_version,
+            evolved_mekanism_extras_version: evolved_mekanism_extras_version,
+            mekanism_extras_version: mekanism_extras_version
     ]
     inputs.properties replaceProperties
 
@@ -181,6 +189,11 @@ mixin {
     add sourceSets.main, 'apoex.refmap.json'
     config 'apoex.mixins.json'
     config 'apoex.mekanism.mixins.json'
+    config 'apoex.mekanismgenerators.mixins.json'
+    config 'apoex.astralmekanism.mixins.json'
+    config 'apoex.evolvedmekanism.mixins.json'
+    // config 'apoex.evolvedmekanismextras.mixins.json'
+    config 'apoex.mekanismextras.mixins.json'
     debug.verbose = true
     debug.export = true
 }

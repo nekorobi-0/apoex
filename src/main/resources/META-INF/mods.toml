@@ -8,7 +8,12 @@ displayName="${mod_name}"
 authors="${mod_authors}"
 mixins = [
     "apoex.mixins.json",
-    "apoex.mekanism.mixins.json"
+    "apoex.mekanism.mixins.json",
+    "apoex.astralmekanism.mixins.json",
+    "apoex.evolvedmekanism.mixins.json",
+    #"apoex.evolvedmekanismextras.mixins.json",
+    "apoex.mekanismextras.mixins.json",
+    "apoex.mekanismgenerators.mixins.json"
 ]
 description='''${mod_description}'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
@@ -30,7 +35,7 @@ description='''${mod_description}'''
     modId="minecraft"
     mandatory=true
     versionRange="${minecraft_version_range}"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
@@ -62,6 +67,41 @@ ordering = "BEFORE"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
+modId = "mekanismgenerators"
+mandatory = false
+versionRange = "${mekanism_version}"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "astral_mekanism"
+mandatory = false
+versionRange = "${astral_mekanism_version}"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "evolvedmekanism"
+mandatory = false
+versionRange = "${evolved_mekanism_version}"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "emextras"
+mandatory = false
+versionRange = "${evolved_mekanism_extras_version}"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "mekanism_extras"
+mandatory = false
+versionRange = "${mekanism_extras_version}"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
 modId = "addonapi"
 mandatory = true
 versionRange = "${addonapi_version}"
@@ -72,5 +112,12 @@ side = "BOTH"
 modId = "jei"
 mandatory = false
 versionRange = "${jei_version}"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "jade"
+mandatory = false
+versionRange = "${jade_version}"
 ordering = "BEFORE"
 side = "BOTH"

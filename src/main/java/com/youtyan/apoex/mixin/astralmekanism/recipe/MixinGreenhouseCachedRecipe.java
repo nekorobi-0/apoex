@@ -46,24 +46,19 @@ public abstract class MixinGreenhouseCachedRecipe {
             IApoExMekanism tile = ApoExContext.MEKANISM_TILE.get();
             if (tile != null) {
                 try {
-                    // seedInputHandler
                     if (!(this.seedInputHandler instanceof ApoExInputHandler)) {
                         this.seedInputHandler = new ApoExInputHandler(this.seedInputHandler, tile);
                     }
-                    // farmlandHandler
                     if (!(this.farmlandHandler instanceof ApoExInputHandler)) {
                         this.farmlandHandler = new ApoExInputHandler(this.farmlandHandler, tile);
                     }
-                    // fluidHandler
                     if (!(this.fluidHandler instanceof ApoExFluidInputHandler)) {
                         this.fluidHandler = new ApoExFluidInputHandler(this.fluidHandler, tile);
                     }
-                    // outputHandler
                     if (!(this.outputHandler instanceof ApoExOutputHandler)) {
                         this.outputHandler = new ApoExOutputHandler<>(this.outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

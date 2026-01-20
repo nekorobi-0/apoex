@@ -20,11 +20,12 @@ public class ApoExDataGenerator {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        gen.addProvider(event.includeServer(), new AffixData(gen));
+        gen.addProvider(event.includeServer(), new MekanismAffixData(gen));
         gen.addProvider(event.includeServer(), new TrueDamageAffixData(gen));
-        
-        // Damage Types
-        gen.addProvider(event.includeServer(), new ApoExDamageTypeProvider(gen, lookupProvider, existingFileHelper));
-        gen.addProvider(event.includeServer(), new ApoExDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
+
+        ApoExDamageTypeProvider damageTypeProvider = new ApoExDamageTypeProvider(gen, lookupProvider, existingFileHelper);
+        gen.addProvider(event.includeServer(), damageTypeProvider);
+
+        gen.addProvider(event.includeServer(), new ApoExDamageTypeTagsProvider(output, damageTypeProvider.getRegistryProvider(), existingFileHelper));
     }
 }

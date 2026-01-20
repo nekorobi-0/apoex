@@ -61,7 +61,6 @@ public abstract class MixinTwoInputCachedRecipe<INPUT_A, INPUT_B, OUTPUT, RECIPE
                 }
 
                 try {
-                    // Input A handler
                     Object inputA = this.inputHandler.getInput();
                     if (inputA instanceof ItemStack) {
                         if (!(this.inputHandler instanceof ApoExItemInputHandler)) {
@@ -79,7 +78,6 @@ public abstract class MixinTwoInputCachedRecipe<INPUT_A, INPUT_B, OUTPUT, RECIPE
                         }
                     }
 
-                    // Input B handler
                     Object inputB = this.secondaryInputHandler.getInput();
                     if (inputB instanceof ItemStack) {
                         if (!(this.secondaryInputHandler instanceof ApoExItemInputHandler)) {
@@ -97,12 +95,10 @@ public abstract class MixinTwoInputCachedRecipe<INPUT_A, INPUT_B, OUTPUT, RECIPE
                         }
                     }
 
-                    // Output handler
                     if (!(outputHandler instanceof ApoExOutputHandler)) {
                         this.outputHandler = new ApoExOutputHandler<>(outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

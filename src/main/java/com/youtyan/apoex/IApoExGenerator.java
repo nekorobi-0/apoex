@@ -13,7 +13,6 @@ public interface IApoExGenerator extends IApoExMekanism {
     float getStoredFuelFraction();
     void setStoredFuelFraction(float value);
 
-    // 追加
     float getHeatCapacityMultiplier();
     void setHeatCapacityMultiplier(float value);
 }

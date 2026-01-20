@@ -58,7 +58,6 @@ public abstract class MixinOneInputCachedRecipe<INPUT, OUTPUT, RECIPE extends Me
                 }
 
                 try {
-                    // Input handler
                     Object input = this.inputHandler.getInput();
                     if (input instanceof ItemStack) {
                         if (!(this.inputHandler instanceof ApoExItemInputHandler)) {
@@ -76,12 +75,10 @@ public abstract class MixinOneInputCachedRecipe<INPUT, OUTPUT, RECIPE extends Me
                         }
                     }
 
-                    // Output handler
                     if (!(outputHandler instanceof ApoExOutputHandler)) {
                         this.outputHandler = new ApoExOutputHandler<>(outputHandler, tile);
                     }
                 } catch (Exception ignored) {
-                    // Ignore exceptions during wrapping
                 } finally {
                     this.apoex_handlersWrapped = true;
                 }

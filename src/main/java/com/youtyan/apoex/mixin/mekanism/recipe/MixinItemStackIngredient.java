@@ -28,7 +28,6 @@ public abstract class MixinItemStackIngredient {
                     return;
                 }
                 
-                // 削減後の必要数を計算 (ApoExInputHandlerとロジックを統一)
                 int reducedAmount = Math.max(1, (int) (this.amount * (1.0F - reduction)));
                 
                 if (stack.getCount() >= reducedAmount) {

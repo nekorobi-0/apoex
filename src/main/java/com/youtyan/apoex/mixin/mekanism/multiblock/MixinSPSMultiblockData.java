@@ -15,7 +15,6 @@ import java.util.function.LongSupplier;
 @Mixin(value = SPSMultiblockData.class, remap = false)
 public abstract class MixinSPSMultiblockData {
 
-    // (タンク容量の @ModifyArg はそのまま)
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE", target = "Lmekanism/common/capabilities/chemical/multiblock/MultiblockChemicalTankBuilder;input(Lmekanism/common/lib/multiblock/MultiblockData;Ljava/util/function/LongSupplier;Ljava/util/function/Predicate;Lmekanism/api/chemical/attribute/ChemicalAttributeValidator;Lmekanism/api/IContentsListener;)Lmekanism/api/chemical/IChemicalTank;"), index = 1)
     private LongSupplier apoex_modifyInputCapacity(LongSupplier original) {
         return () -> {
@@ -44,24 +43,20 @@ public abstract class MixinSPSMultiblockData {
         };
     }
 
-    // --- ここから修正 ---
-    // 消費量減少
     @Redirect(method = "process", at = @At(value = "INVOKE", target = "Lmekanism/api/chemical/gas/IGasTank;shrinkStack(JLmekanism/api/Action;)J"))
     private long apoex_redirectShrinkStack(IGasTank tank, long operations, Action action) {
         if (this instanceof IApoExMultiblock multiblock) {
             float efficiency = multiblock.getFuelEfficiency();
             if (efficiency > 0) {
                 long actualConsumption = (long) (operations * (1.0F - efficiency));
-                actualConsumption = Math.max(0, actualConsumption); // 0未満にはしない
+                actualConsumption = Math.max(0, actualConsumption);
                 tank.shrinkStack(actualConsumption, action);
-                // 消費量を偽って、本来の処理量を返す
                 return operations;
             }
         }
         return tank.shrinkStack(operations, action);
     }
 
-    // 生産量増加
     @ModifyArg(method = "process", at = @At(value = "INVOKE", target = "Lmekanism/api/chemical/gas/IGasTank;insert(Lmekanism/api/chemical/ChemicalStack;Lmekanism/api/Action;Lmekanism/api/AutomationType;)Lmekanism/api/chemical/ChemicalStack;"), index = 0)
     private ChemicalStack apoex_insertOutput(ChemicalStack stack) {
         if (this instanceof IApoExMultiblock multiblock) {

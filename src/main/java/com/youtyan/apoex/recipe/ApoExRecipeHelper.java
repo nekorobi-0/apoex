@@ -21,7 +21,6 @@ public class ApoExRecipeHelper {
                 wrapTwoInput((TwoInputCachedRecipe<?, ?, ?, ?>) recipe, tile);
             }
         } catch (Exception e) {
-            // e.printStackTrace();
         }
     }
 

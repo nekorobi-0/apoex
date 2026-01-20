@@ -21,8 +21,6 @@ public class MixinAttributeAffix {
     @Inject(method = "canApplyTo", at = @At("HEAD"), cancellable = true, remap = false)
     private void apoex_canApplyToMachine(ItemStack stack, LootCategory cat, LootRarity rarity, CallbackInfoReturnable<Boolean> cir) {
         if (ApoExLootCategories.MEKANISM_MACHINE != null && cat == ApoExLootCategories.MEKANISM_MACHINE) {
-            // 機械カテゴリの場合、AttributeAffixが適用されないようにする
-            // これにより、機械専用のAffixのみが適用されるようになる
             cir.setReturnValue(false);
         }
     }
