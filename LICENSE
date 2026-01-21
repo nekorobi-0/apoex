@@ -19,3 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+### Third-Party Notices and Credits
+
+APOEX is an expansion and integration mod based on Apotheosis.
+This project acknowledges and depends on the following works:
+
+* **Apotheosis** by Shadows-of-Fire (MIT License) - The core foundation of this mod.
+* **Apotheotic Additions** (MIT/Custom License)
+* **Mekanism** by aidancbrady (MIT License)
+* **Just Enough Items (JEI)** by mezz (MIT License)
+* **Jade** by Snownee (MIT License)
+* **Placebo, Patchouli, and other dependencies** listed in the build configuration.
+
+Special thanks to the developers of these mods for their incredible work and for making their source code available for integration.
