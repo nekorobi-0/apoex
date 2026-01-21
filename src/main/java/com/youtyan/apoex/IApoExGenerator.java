@@ -15,4 +15,7 @@ public interface IApoExGenerator extends IApoExMekanism {
 
     float getHeatCapacityMultiplier();
     void setHeatCapacityMultiplier(float value);
+
+    float getEnergyCapacityMultiplier();
+    void setEnergyCapacityMultiplier(float value);
 }

@@ -14,7 +14,7 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.damage_resistance",
+  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.damage_resistance_additions",
   "types": [
     "apoex:fission_reactor"
   ],

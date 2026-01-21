@@ -30,14 +30,16 @@ public class MekanismAffixData implements DataProvider {
         List<CompletableFuture<?>> futures = new ArrayList<>();
 
         String[] generatorTypes = {
-            "apoex:heat_generator", "apoex:gas_generator", "apoex:bio_generator", 
-            "apoex:wind_generator", "apoex:solar_generator", 
-            "apoex:fission_reactor", "apoex:fusion_reactor", "apoex:turbine"
+                "apoex:heat_generator", "apoex:gas_generator", "apoex:bio_generator",
+                "apoex:wind_generator", "apoex:solar_generator",
+                "apoex:fission_reactor", "apoex:fusion_reactor", "apoex:turbine",
+                "apoex:mekanism_generator"
         };
-        
+
         String[] singleBlockGeneratorTypes = {
-            "apoex:heat_generator", "apoex:gas_generator", "apoex:bio_generator", 
-            "apoex:wind_generator", "apoex:solar_generator"
+                "apoex:heat_generator", "apoex:gas_generator", "apoex:bio_generator",
+                "apoex:wind_generator", "apoex:solar_generator",
+                "apoex:mekanism_generator"
         };
 
         Map<String, Step> capacityValues = new HashMap<>();
@@ -120,7 +122,7 @@ public class MekanismAffixData implements DataProvider {
         fuelEfficiencyValues.put("apotheotic_additions:artifact", new Step(0.50F, 5, 0.01F));
 
         futures.add(generateAffix(cache, "mekanism/generator/fuel_efficiency", "affix.apoex.mekanism.generator.fuel_efficiency", fuelEfficiencyValues,
-            "apoex:heat_generator", "apoex:gas_generator", "apoex:bio_generator"));
+                "apoex:heat_generator", "apoex:gas_generator", "apoex:bio_generator", "apoex:mekanism_generator"));
 
         Map<String, Step> defaultMultiblockCapacity = new HashMap<>();
         defaultMultiblockCapacity.put("apotheosis:common", new Step(0.20F, 10, 0.02F));
@@ -154,8 +156,8 @@ public class MekanismAffixData implements DataProvider {
         defaultMultiblockFuelEfficiency.put("apotheotic_additions:artifact", new Step(0.70F, 5, 0.02F));
 
         Map<String, Step> defaultMultiblockHeatEfficiency = new HashMap<>();
-        defaultMultiblockHeatEfficiency.put("apotheosis:rare", new Step(0.10F, 05, 0.01F));
-        defaultMultiblockHeatEfficiency.put("apotheosis:epic", new Step(0.20F, 05, 0.01F));
+        defaultMultiblockHeatEfficiency.put("apotheosis:rare", new Step(0.10F, 5, 0.01F));
+        defaultMultiblockHeatEfficiency.put("apotheosis:epic", new Step(0.20F, 5, 0.01F));
         defaultMultiblockHeatEfficiency.put("apotheosis:mythic", new Step(0.4F, 10, 0.01F));
         defaultMultiblockHeatEfficiency.put("apotheosis:ancient", new Step(0.5F, 20, 0.01F));
         defaultMultiblockHeatEfficiency.put("apotheotic_additions:esoteric", new Step(0.85F, 10, 0.01F));
@@ -172,13 +174,6 @@ public class MekanismAffixData implements DataProvider {
         defaultMultiblockFuelCapacity.put("apotheotic_additions:esoteric", new Step(7.20F, 70, 0.10F));
         defaultMultiblockFuelCapacity.put("apotheotic_additions:heirloom", new Step(4.00F, 50, 0.06F));
         defaultMultiblockFuelCapacity.put("apotheotic_additions:artifact", new Step(3.00F, 30, 0.04F));
-
-        Map<String, Step> defaultMultiblockoutput = new HashMap<>();
-        defaultMultiblockoutput.put("apotheosis:mythic", new Step(1.0F, 1, 1.0F));
-        defaultMultiblockoutput.put("apotheosis:ancient", new Step(1.0F, 2, 1.0F));
-        defaultMultiblockoutput.put("apotheotic_additions:esoteric", new Step(5.0F, 5, 1.0F));
-        defaultMultiblockoutput.put("apotheotic_additions:heirloom", new Step(3.0F, 2, 1.0F));
-        defaultMultiblockoutput.put("apotheotic_additions:artifact", new Step(2.0F, 1, 1.0F));
 
         Map<String, Step> defaultMultiblockresistance = new HashMap<>();
         defaultMultiblockresistance.put("apotheosis:rare", new Step(0.10F, 5, 0.01F));
@@ -230,32 +225,26 @@ public class MekanismAffixData implements DataProvider {
         futures.add(generateMultiblockAffix(cache, "fusion_reactor", "fuel_efficiency", defaultMultiblockFuelEfficiency, true));
         futures.add(generateMultiblockAffix(cache, "fusion_reactor", "heat_efficiency", defaultMultiblockHeatEfficiency, true));
         futures.add(generateMultiblockAffix(cache, "fusion_reactor", "fuel_capacity", defaultMultiblockFuelCapacity, true));
-        futures.add(generateMultiblockAffix(cache, "fusion_reactor", "output_multiplier", defaultMultiblockoutput, true));
 
         futures.add(generateMultiblockAffix(cache, "turbine", "energy_capacity", defaultMultiblockCapacity, true));
         futures.add(generateMultiblockAffix(cache, "turbine", "generation_multiplier", defaultMultiblockGeneration, true));
         futures.add(generateMultiblockAffix(cache, "turbine", "fuel_efficiency", TurbinefuelEfficiency, true));
         futures.add(generateMultiblockAffix(cache, "turbine", "fuel_capacity", TurbineFuelCapacity, true));
-        futures.add(generateMultiblockAffix(cache, "turbine", "output_multiplier", defaultMultiblockoutput, true));
-        futures.add(generateMultiblockAffix(cache, "sps", "energy_capacity", defaultMultiblockCapacity, false));
+
         futures.add(generateMultiblockAffix(cache, "sps", "generation_multiplier", defaultMultiblockGeneration, false));
         futures.add(generateMultiblockAffix(cache, "sps", "fuel_efficiency", defaultMultiblockFuelEfficiency, false));
         futures.add(generateMultiblockAffix(cache, "sps", "fuel_capacity", defaultMultiblockFuelCapacity, false));
-        futures.add(generateMultiblockAffix(cache, "sps", "output_multiplier", defaultMultiblockoutput, false));
+
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "generation_multiplier", defaultMultiblockGeneration, false));
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "fuel_efficiency", defaultMultiblockFuelEfficiency, false));
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "heat_efficiency", defaultMultiblockHeatEfficiency, false));
         futures.add(generateMultiblockAffix(cache, "evaporation_plant", "fuel_capacity", defaultMultiblockFuelCapacity, false));
-        futures.add(generateMultiblockAffix(cache, "evaporation_plant", "output_multiplier", defaultMultiblockoutput, false));
 
-        // Boiler Affixes
-        futures.add(generateMultiblockAffix(cache, "boiler", "generation_multiplier", defaultMultiblockGeneration, false)); // Steam/Heat generation
-        futures.add(generateMultiblockAffix(cache, "boiler", "fuel_efficiency", TurbinefuelEfficiency, false)); // Water consumption efficiency
-        futures.add(generateMultiblockAffix(cache, "boiler", "heat_efficiency", defaultMultiblockHeatEfficiency, false)); // Heat transfer efficiency
-        futures.add(generateMultiblockAffix(cache, "boiler", "fuel_capacity", TurbinefuelEfficiency, false)); // Water/Steam capacity
-        futures.add(generateMultiblockAffix(cache, "boiler", "output_multiplier", defaultMultiblockoutput, false)); // Steam output multiplier
+        futures.add(generateMultiblockAffix(cache, "boiler", "generation_multiplier", defaultMultiblockGeneration, false));
+        futures.add(generateMultiblockAffix(cache, "boiler", "fuel_efficiency", TurbinefuelEfficiency, false));
+        futures.add(generateMultiblockAffix(cache, "boiler", "fuel_capacity", TurbinefuelEfficiency, false));
 
-
+        /*
         Map<String, Step> laserHeatEfficiencyValues = new HashMap<>();
         laserHeatEfficiencyValues.put("apotheosis:rare", new Step(0.10F, 05, 0.01F));
         laserHeatEfficiencyValues.put("apotheosis:epic", new Step(0.20F, 05, 0.01F));
@@ -271,13 +260,14 @@ public class MekanismAffixData implements DataProvider {
         futures.add(generateAffix(cache, "mekanism/laser/heat_efficiency", "affix.apoex.mekanism.laser.heat_efficiency", laserHeatEfficiencyValues, "apoex:laser"));
         futures.add(generateAffix(cache, "mekanism/laser/heat_multiplier", "affix.apoex.mekanism.laser.heat_multiplier", generationValues, "apoex:laser"));
 
+         */
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
     }
 
     private CompletableFuture<?> generateMultiblockAffix(CachedOutput cache, String multiblockName, String affixType, Map<String, Step> values, boolean isGenerator) {
         String pathPrefix = isGenerator ? "mekanism/generator/multiblock/" : "mekanism/multiblock/";
         String translationKeyPrefix = isGenerator ? "affix.apoex.mekanism.generator.multiblock." : "affix.apoex.mekanism.multiblock.";
-        
+
         String path = pathPrefix + multiblockName + "/" + affixType;
         String translationKey = translationKeyPrefix + multiblockName + "." + affixType;
         String type = "apoex:" + multiblockName;
@@ -304,7 +294,7 @@ public class MekanismAffixData implements DataProvider {
         }
 
         if (!additionsValues.isEmpty()) {
-            futures.add(saveAffix(cache, name + "_additions", desc, additionsValues, "apotheotic_additions", types));
+            futures.add(saveAffix(cache, name + "_additions", desc + "_additions", additionsValues, "apotheotic_additions", types));
         }
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
@@ -328,10 +318,10 @@ public class MekanismAffixData implements DataProvider {
             conditions.add(modCondition);
         }
 
-        boolean isGenerator = Arrays.stream(types).anyMatch(t -> 
-            t.equals("apoex:heat_generator") || t.equals("apoex:gas_generator") || t.equals("apoex:bio_generator") ||
-            t.equals("apoex:wind_generator") || t.equals("apoex:solar_generator") || t.equals("apoex:fission_reactor") ||
-            t.equals("apoex:fusion_reactor") || t.equals("apoex:turbine")
+        boolean isGenerator = Arrays.stream(types).anyMatch(t ->
+                t.equals("apoex:heat_generator") || t.equals("apoex:gas_generator") || t.equals("apoex:bio_generator") ||
+                        t.equals("apoex:wind_generator") || t.equals("apoex:solar_generator") || t.equals("apoex:fission_reactor") ||
+                        t.equals("apoex:fusion_reactor") || t.equals("apoex:turbine") || t.equals("apoex:mekanism_generator")
         );
 
         if (isGenerator) {
@@ -340,7 +330,7 @@ public class MekanismAffixData implements DataProvider {
             genCondition.addProperty("modid", "mekanismgenerators");
             conditions.add(genCondition);
         }
-        
+
         obj.add("conditions", conditions);
 
         obj.addProperty("type", "apoex:mekanism_stat");

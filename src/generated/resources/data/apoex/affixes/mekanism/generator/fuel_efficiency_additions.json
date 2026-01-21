@@ -14,11 +14,12 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.fuel_efficiency",
+  "desc": "affix.apoex.mekanism.generator.fuel_efficiency_additions",
   "types": [
     "apoex:heat_generator",
     "apoex:gas_generator",
-    "apoex:bio_generator"
+    "apoex:bio_generator",
+    "apoex:mekanism_generator"
   ],
   "values": {
     "apotheotic_additions:artifact": {

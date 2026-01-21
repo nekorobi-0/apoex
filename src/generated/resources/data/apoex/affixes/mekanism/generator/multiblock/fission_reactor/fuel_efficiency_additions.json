@@ -14,7 +14,7 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.fuel_efficiency",
+  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.fuel_efficiency_additions",
   "types": [
     "apoex:fission_reactor"
   ],

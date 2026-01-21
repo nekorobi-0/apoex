@@ -14,7 +14,7 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.multiblock.fusion_reactor.energy_capacity",
+  "desc": "affix.apoex.mekanism.generator.multiblock.fusion_reactor.energy_capacity_additions",
   "types": [
     "apoex:fusion_reactor"
   ],

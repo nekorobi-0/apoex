@@ -62,7 +62,9 @@ public class MekanismStatAffix extends Affix {
 
     @Override
     public boolean canApplyTo(ItemStack stack, LootCategory cat, LootRarity rarity) {
-        return this.types.contains(cat);
+        boolean typeMatch = this.types.contains(cat);
+        boolean rarityMatch = this.values.containsKey(rarity);
+        return typeMatch && rarityMatch;
     }
 
     @Override

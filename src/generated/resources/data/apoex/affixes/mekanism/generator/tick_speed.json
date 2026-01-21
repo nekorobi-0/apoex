@@ -19,7 +19,8 @@
     "apoex:solar_generator",
     "apoex:fission_reactor",
     "apoex:fusion_reactor",
-    "apoex:turbine"
+    "apoex:turbine",
+    "apoex:mekanism_generator"
   ],
   "values": {
     "apotheosis:ancient": {

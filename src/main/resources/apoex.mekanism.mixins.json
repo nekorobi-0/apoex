@@ -48,7 +48,8 @@
     "api.MixinVariableCapacityFluidTank",
     "api.MixinVariableCapacityChemicalTank",
     "accessor.AccessorBasicFluidTank",
-    "accessor.AccessorBasicChemicalTank"
+    "accessor.AccessorBasicChemicalTank",
+    "accessor.AccessorBasicEnergyContainer"
   ],
   "server": [],
   "injectors": {

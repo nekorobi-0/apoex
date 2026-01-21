@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.multiblock.evaporation_plant.generation_multiplier",
+  "desc": "affix.apoex.mekanism.multiblock.evaporation_plant.generation_multiplier_additions",
   "types": [
     "apoex:evaporation_plant"
   ],

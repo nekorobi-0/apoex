@@ -14,13 +14,14 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.generation_multiplier",
+  "desc": "affix.apoex.mekanism.generator.generation_multiplier_additions",
   "types": [
     "apoex:heat_generator",
     "apoex:gas_generator",
     "apoex:bio_generator",
     "apoex:wind_generator",
-    "apoex:solar_generator"
+    "apoex:solar_generator",
+    "apoex:mekanism_generator"
   ],
   "values": {
     "apotheotic_additions:artifact": {

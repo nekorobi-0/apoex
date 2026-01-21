@@ -3,14 +3,34 @@ package com.youtyan.apoex.mixin.astralmekanism.generator;
 import astral_mekanism.block.blockentity.generator.BEHeatGenerator;
 import com.youtyan.apoex.IApoExGenerator;
 import mekanism.api.math.FloatingLong;
+import mekanism.api.providers.IBlockProvider;
+import mekanism.common.capabilities.energy.BasicEnergyContainer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = BEHeatGenerator.class, remap = false)
 public abstract class MixinBEHeatGenerator implements IApoExGenerator {
+
+    @Shadow
+    private BasicEnergyContainer energyContainer;
+
+    @Unique
+    private FloatingLong apoex_baseMaxEnergy;
+
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void apoex_init(IBlockProvider blockProvider, BlockPos pos, BlockState state, CallbackInfo ci) {
+        if (energyContainer != null) {
+            apoex_baseMaxEnergy = energyContainer.getMaxEnergy();
+        }
+    }
 
     @ModifyVariable(method = "simulate", at = @At(value = "STORE"), name = "energyFromHeat")
     private FloatingLong apoex_modifyEnergyFromHeat(FloatingLong energyFromHeat) {

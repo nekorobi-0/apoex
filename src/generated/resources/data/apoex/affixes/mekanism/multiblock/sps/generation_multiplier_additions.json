@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.multiblock.sps.generation_multiplier",
+  "desc": "affix.apoex.mekanism.multiblock.sps.generation_multiplier_additions",
   "types": [
     "apoex:sps"
   ],

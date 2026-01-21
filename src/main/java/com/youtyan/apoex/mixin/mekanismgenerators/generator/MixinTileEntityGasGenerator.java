@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.Coerce;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 @Mixin(value = TileEntityGasGenerator.class, remap = false)
@@ -27,33 +26,6 @@ public abstract class MixinTileEntityGasGenerator extends mekanism.generators.co
 
     public MixinTileEntityGasGenerator() {
         super(null, null, null, null);
-    }
-
-    @Override
-    public void updateCapacity() {
-        float mult = this.getFuelCapacityMultiplier();
-        if (mult > 0) {
-            try {
-                Field fuelTankField = TileEntityGasGenerator.class.getDeclaredField("fuelTank");
-                fuelTankField.setAccessible(true);
-                Object fuelTank = fuelTankField.get(this);
-
-                if (fuelTank != null) {
-                    long baseCapacity = mekanism.generators.common.config.MekanismGeneratorsConfig.generators.gbgTankCapacity.get();
-                    long newCapacity = (long) (baseCapacity * (1.0F + mult));
-                    
-                    Field capacityField = mekanism.api.chemical.BasicChemicalTank.class.getDeclaredField("capacity");
-                    capacityField.setAccessible(true);
-                    
-                    Field modifiersField = Field.class.getDeclaredField("modifiers");
-                    modifiersField.setAccessible(true);
-                    modifiersField.setInt(capacityField, capacityField.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-                    
-                    capacityField.setLong(fuelTank, newCapacity);
-                }
-            } catch (Exception e) {
-            }
-        }
     }
 
     @Inject(method = "onUpdateServer", at = @At("HEAD"))

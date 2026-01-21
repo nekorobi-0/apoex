@@ -14,7 +14,7 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.generation_multiplier",
+  "desc": "affix.apoex.mekanism.generator.multiblock.fission_reactor.generation_multiplier_additions",
   "types": [
     "apoex:fission_reactor"
   ],

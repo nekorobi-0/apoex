@@ -16,7 +16,8 @@
     "apoex:gas_generator",
     "apoex:bio_generator",
     "apoex:wind_generator",
-    "apoex:solar_generator"
+    "apoex:solar_generator",
+    "apoex:mekanism_generator"
   ],
   "values": {
     "apotheosis:ancient": {

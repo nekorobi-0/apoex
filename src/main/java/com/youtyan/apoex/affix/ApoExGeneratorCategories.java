@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ApoExGeneratorCategories {
+
     public static final LootCategory HEAT_GENERATOR = LootCategory.register(
             LootCategory.PICKAXE,
             ApoEXMod.MODID + ":heat_generator",
@@ -89,12 +90,16 @@ public class ApoExGeneratorCategories {
 
      */
 
+
+
     public static final LootCategory BOILER = LootCategory.register(
             LootCategory.PICKAXE,
             ApoEXMod.MODID + ":boiler",
             s -> isGenerator(s, "boiler"),
             new EquipmentSlot[]{EquipmentSlot.MAINHAND}
     );
+
+
 
     public static boolean isGenerator(ItemStack s, String name) {
         if (s.getItem() instanceof BlockItem bi) {
@@ -104,7 +109,6 @@ public class ApoExGeneratorCategories {
                 if (namespace.equals("mekanism") || namespace.equals("mekanismgenerators") ||
                     namespace.equals("mekanism_extras") || namespace.equals("evolved_mekanism") ||
                     namespace.equals("evolved_mekanism_extras") || namespace.equals("astral_mekanism")
-                        // || namespace.equals("mekanism_lasers_old")
                 ){
                     return id.getPath().contains(name);
                 }

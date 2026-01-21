@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.input_reduction",
+  "desc": "affix.apoex.mekanism.input_reduction_additions",
   "types": [
     "apoex:mekanism_machine"
   ],

@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.output_multiplier",
+  "desc": "affix.apoex.mekanism.output_multiplier_additions",
   "types": [
     "apoex:mekanism_machine"
   ],

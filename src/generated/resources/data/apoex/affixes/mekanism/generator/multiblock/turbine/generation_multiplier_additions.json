@@ -14,7 +14,7 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.multiblock.turbine.generation_multiplier",
+  "desc": "affix.apoex.mekanism.generator.multiblock.turbine.generation_multiplier_additions",
   "types": [
     "apoex:turbine"
   ],

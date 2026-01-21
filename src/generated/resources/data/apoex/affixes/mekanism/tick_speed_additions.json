@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.tick_speed",
+  "desc": "affix.apoex.mekanism.tick_speed_additions",
   "types": [
     "apoex:mekanism_machine"
   ],

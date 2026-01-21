@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.energy_efficiency",
+  "desc": "affix.apoex.mekanism.energy_efficiency_additions",
   "types": [
     "apoex:mekanism_machine"
   ],

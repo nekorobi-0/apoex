@@ -14,7 +14,7 @@
       "modid": "mekanismgenerators"
     }
   ],
-  "desc": "affix.apoex.mekanism.generator.tick_speed",
+  "desc": "affix.apoex.mekanism.generator.tick_speed_additions",
   "types": [
     "apoex:heat_generator",
     "apoex:gas_generator",
@@ -23,7 +23,8 @@
     "apoex:solar_generator",
     "apoex:fission_reactor",
     "apoex:fusion_reactor",
-    "apoex:turbine"
+    "apoex:turbine",
+    "apoex:mekanism_generator"
   ],
   "values": {
     "apotheotic_additions:artifact": {

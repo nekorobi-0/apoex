@@ -44,10 +44,10 @@ public class ApoExLootCategories {
                         namespace.equals("emextras") || namespace.equals("astral_mekanism")) {
 
                     if (ApoExGeneratorCategories.isAnyGenerator(s)) {
-                        return isGenerator;
+                        return false;
                     }
 
-                    boolean isGen = path.contains("generator") || path.contains("turbine") || path.contains("reactor");
+                    boolean isGen = path.contains("generator");
 
                     if (isGenerator) {
                         return isGen;

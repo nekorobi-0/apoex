@@ -10,7 +10,7 @@
       "modid": "apotheotic_additions"
     }
   ],
-  "desc": "affix.apoex.mekanism.multiblock.evaporation_plant.fuel_capacity",
+  "desc": "affix.apoex.mekanism.multiblock.evaporation_plant.fuel_capacity_additions",
   "types": [
     "apoex:evaporation_plant"
   ],
