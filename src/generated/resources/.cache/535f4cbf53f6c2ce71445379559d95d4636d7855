@@ -1,0 +1,6 @@
+// 1.20.1	2026-01-19T18:13:30.219487	Tags for minecraft:damage_type mod id apoex
+c4d0f7822e140706e14eff05c554d31a20fb4254 data/minecraft/tags/damage_type/bypasses_armor.json
+c4d0f7822e140706e14eff05c554d31a20fb4254 data/minecraft/tags/damage_type/bypasses_enchantments.json
+c4d0f7822e140706e14eff05c554d31a20fb4254 data/minecraft/tags/damage_type/bypasses_invulnerability.json
+c4d0f7822e140706e14eff05c554d31a20fb4254 data/minecraft/tags/damage_type/bypasses_resistance.json
+c4d0f7822e140706e14eff05c554d31a20fb4254 data/minecraft/tags/damage_type/bypasses_shield.json

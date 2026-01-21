@@ -56,7 +56,6 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
 
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', 'apoex', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
@@ -77,7 +76,6 @@ sourceSets {
 }
 
 repositories {
-    // CurseMaven for mod dependencies
     maven {
         url = "https://cursemaven.com"
     }
@@ -141,9 +139,6 @@ dependencies {
     
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
-
-    // 開発環境用（実行時のみ）
-    // implementation fg.deobf("curse.maven:mekanism-268560:6258796")// core
 }
 
 tasks.named('processResources', ProcessResources).configure {
