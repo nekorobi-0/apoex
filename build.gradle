@@ -6,7 +6,6 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
 }
-
 version = mod_version
 group = mod_group_id
 
@@ -114,7 +113,7 @@ dependencies {
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
     implementation fg.deobf("curse.maven:apotheotic-additions-924640:6393313")
     implementation fg.deobf("curse.maven:apotheosis-modern-ragnarok-966582:7281314")
-    implementation fg.deobf("curse.maven:moffs-addonapi-dynload-1242459:7441442")
+    implementation fg.deobf("curse.maven:moffs-addonapi-dynload-1242459:7695505")
     implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:7278003")
     implementation fg.deobf("curse.maven:apothic-attributes-898963:5634071")
     implementation fg.deobf("curse.maven:jei-238222:7391695")
@@ -208,4 +207,7 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+    options.compilerArgs += [
+            "-Xlint:none"
+    ]
 }

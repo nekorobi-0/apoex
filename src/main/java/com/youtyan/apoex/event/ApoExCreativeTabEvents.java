@@ -18,7 +18,7 @@ public class ApoExCreativeTabEvents {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ApoExItems.SOCKET_KEY.get());
         }
-        for (AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules()) {
+        for (AddonModule module : AddonModuleRegistry.INSTANCE.getLoadedModules().values()) {
             if (module instanceof ICreativeTabListener listener) {
                 listener.buildContents(event);
             }
