@@ -34,5 +34,11 @@ public class ApoExMekanismCompatModule implements AddonModule {
         } catch (Throwable e) {
             System.err.println("Failed to register MekSuitGemDamageHandler: " + e.getMessage());
         }
+        try {
+            Class<?> handlerClass = Class.forName("com.youtyan.apoex.event.mekanism.MekSuitCapabilityHandler");
+            MinecraftForge.EVENT_BUS.register(handlerClass);
+        } catch (Throwable e) {
+            System.err.println("Failed to register MekSuitCapabilityHandler: " + e.getMessage());
+        }
     }
 }

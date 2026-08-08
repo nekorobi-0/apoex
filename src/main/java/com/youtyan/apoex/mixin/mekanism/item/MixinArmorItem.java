@@ -121,7 +121,7 @@ public abstract class MixinArmorItem extends Item implements IJetpackItem, IMode
     }
 
     @Override
-    public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
+    public @Nullable ICapabilityProvider apoex$initCaps(ItemStack stack, @Nullable CompoundTag nbt) {
         if (MekSuitGemIntegration.isMekArmor(stack)) {
             gasTankSpecs.clear();
             fluidTankSpecs.clear();
@@ -137,7 +137,7 @@ public abstract class MixinArmorItem extends Item implements IJetpackItem, IMode
                     item -> isModuleEnabled(item, MekanismModules.LASER_DISSIPATION_UNIT.get()) ? 0.85 : 0));
             if (!capabilities.isEmpty()) return new ItemCapabilityWrapper(stack, capabilities.toArray(new ItemCapability[0]));
         }
-        return super.initCapabilities(stack, nbt);
+        return null;
     }
 
     @Unique private FloatingLong getMaxEnergy(ItemStack stack) { IModule<ModuleEnergyUnit> module = ApoExModuleHelper.getModule(stack, MekanismModules.ENERGY_UNIT.get()); return module == null ? MekanismConfig.gear.mekaSuitBaseEnergyCapacity.get() : module.getCustomInstance().getEnergyCapacity(module); }
